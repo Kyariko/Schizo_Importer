@@ -61,6 +61,10 @@ For offsets, you need a value like this: -x,-y,-z (move one side, move up, move 
 
 For Sizes you need a number
 
+### Important: you need to add a Height value in the importer, otherwise it won't work:
+
+![Capture d’écran (13)](https://user-images.githubusercontent.com/96693526/191616199-0df02c11-9520-45c7-bf4e-7ce167d03e01.png)
+
 ###### be carefull it's adds to the original size so if i use 0.5, it gonna add 0.5 to the original wheel size and not set it to 0.5
 
 ###### if you dont have offsets values you can type 0,0,0 instead but it gonna be weird, same for sizes and thickness (use 0)
