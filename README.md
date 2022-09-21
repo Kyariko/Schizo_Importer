@@ -73,6 +73,10 @@ Here, you can save configs you made by typing the slot number you want and then 
 
 ![3](https://user-images.githubusercontent.com/96693526/191532384-4f939e51-da44-4501-9708-b3a08e007116.png)
 
+## Finally pressing the import button :)
+
+Now you have every offset filled and checked necesarry boxes, you can click the import button, but each time you do this, you need a new car and this isn't optional, you gonna get a glitched car if you stay in a already imported car, i told you.
+
 ## How to import configs:
 
 First you gonna need the txt file, here's a sample for the Lexus lfa i made [here](https://drive.google.com/u/1/uc?id=1bGVH7eRrKlZloTd0oj-79yR6_xhBLx6c&export=download)
