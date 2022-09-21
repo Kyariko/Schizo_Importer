@@ -75,7 +75,7 @@ Here, you can save configs you made by typing the slot number you want and then 
 
 ## Finally pressing the import button :)
 
-Now you have every offset filled and checked necesarry boxes, you can click the import button, but each time you do this, you need a new car and this isn't optional, you gonna get a glitched car if you stay in a already imported car, i told you.
+Now you have every offset filled and checked necessary boxes, you can click the import button, but each time you do this, you need a new car and this isn't optional, you gonna get a glitched car if you stay in a already imported car, i told you.
 
 ## How to import configs:
 
