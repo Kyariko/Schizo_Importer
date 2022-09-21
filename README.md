@@ -78,5 +78,7 @@ Here, you can save configs you made by typing the slot number you want and then 
 First you gonna need the txt file, here's a sample for the Lexus lfa i made [https://drive.google.com/file/d/1bGVH7eRrKlZloTd0oj-79yR6_xhBLx6c/view?usp=sharing](https://drive.google.com/u/1/uc?id=1bGVH7eRrKlZloTd0oj-79yR6_xhBLx6c&export=download)
 
 After this you gonna put this file in the "Workspace" folder in the root directory of your script executor:
-https://user-images.githubusercontent.com/96693526/191542555-3c7454ff-e1a8-4ab6-b3cd-95f91d97cdd6.mp4
+
+https://user-images.githubusercontent.com/96693526/191542821-9323e82d-5727-41bf-b0af-ba5dd02c1965.mp4
+
 
