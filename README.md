@@ -94,3 +94,7 @@ After this you gonna put this file in the "Workspace" folder in the root directo
 https://user-images.githubusercontent.com/96693526/191542821-9323e82d-5727-41bf-b0af-ba5dd02c1965.mp4
 
 And then to load it in game you can use the method i said [here](https://github.com/DydyWasTaken/RJBCI/blob/main/README.md#saving-and-loading-presets)
+
+# How to import your own car
+
+Soon™
