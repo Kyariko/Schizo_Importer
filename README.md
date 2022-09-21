@@ -190,3 +190,13 @@ Now you need to un-anchor some parts and anchor everything else, to Anchor a par
 https://user-images.githubusercontent.com/96693526/191612896-6f09b203-5290-4462-8418-6482284c85fa.mp4
 
 Now you know how to, Anchor everything except "SteeringWheel" part (not the group just the part)
+
+## Part 5
+
+Now you rigged the car, you can upload it like this:
+
+https://user-images.githubusercontent.com/96693526/191613658-cd67e777-dac2-4c89-bd8e-13d42c5e994d.mp4
+
+##### Don't forget to Check the box "Distribute on Market Place" to make the importer having an access to your car ID
+
+You did it, you made a car ready to import in Jailbreak ! Now you can do the steps here to configure it and play with it !
