@@ -59,11 +59,11 @@ Here, you can ajust each wheel, body and seat offset for the car you imported, y
 
 ## Sounds:
 
-Here you need to put 5 sound IDs in this a specific order:
+Here you can tell to the importer if you want to add sounds or not, if yes then you need to put 5 sound IDs in this a specific order:
 
 #### "OFF sound" , "Idle Sound" , "Low Sound" , "Mid Sound" , "High Sound"
 
-(tip: Off sound and idle can be the same)
+(tip: Off sound and idle can be the same ID)
 
 ![2](https://user-images.githubusercontent.com/96693526/191539422-d5275651-56da-4053-84d1-c9a8480db24a.png)
 
