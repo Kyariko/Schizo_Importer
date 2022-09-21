@@ -127,25 +127,25 @@ https://user-images.githubusercontent.com/96693526/191607537-6a975fea-eac8-4bc4-
 
 In the group you just created, rename all items like this:
 
--"BrakeLights" for breaklights
+-"BrakeLights" for breaklights (Optional)
 
--"Windows" for windows
+-"Windows" for windows (required)
 
--"Interior1" for the main interior
+-"Interior1" for the main interior (Required)
 
--"Interior2" if you have a second interior color
+-"Interior2" if you have a second interior color (Optional)
 
--"Body1" for the main body
+-"Body1" for the main body (required)
 
--"Body2" for the second body
+-"Body2" for the second body (optional)
 
--"BrakeLights2" if your car has reverse lights
+-"BrakeLights2" if your car has reverse lights (optional)
 
--"Carbon" if your car has carbon parts
+-"Carbon" if your car has carbon parts (optional)
 
--"SteeringWheel" for the steeringwheel
+-"SteeringWheel" for the steering wheel (required)
 
--"Seat" for seat
+-"Seat" for seat (Required)
 
 everything else in your car you didn't saw above is optional and can be renamed in anyway you want
 
