@@ -189,6 +189,8 @@ You can start using welds:
 
 add a weld constraint in "PrimaryPart", set "Part0" in properties and select "PrimaryPart", then set "Part1" and select "SteeringWheel" like that:
 
+if your sterring wheel has multiple parts then repeat the process for each part (Part0 = "PrimaryPart", Part1 = the part of the sterring wheel)
+
 https://user-images.githubusercontent.com/96693526/191612018-583e63ec-af4f-4539-b858-72464d19e525.mp4
 
 Now you need to un-anchor some parts and anchor everything else, to Anchor a part you need to do this:
