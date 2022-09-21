@@ -35,6 +35,8 @@ Stats of the car are in developement and some of them dont work yet, it modifies
 First you gonna have a empty menu, here's everything you need to know:
 ![0](https://user-images.githubusercontent.com/96693526/191528182-7e0806f8-db93-4154-a4b7-7b40012ffe4a.png)
 
+Press N to close it or open it again
+
 # Choosing the vehicle
 
 For each car, you need to choose a base car depending on the Second body color being available or not, car size, number of interior colors;
