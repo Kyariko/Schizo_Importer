@@ -195,6 +195,8 @@ https://user-images.githubusercontent.com/96693526/191612896-6f09b203-5290-4462-
 
 Now you know how to, Anchor everything except "SteeringWheel" part (not the group just the part)
 
+and last thing ### Everything need to be massless and CanCollide uunchecked or your car gonna go boom
+
 ## Part 5
 
 Now you rigged the car, you can upload it like this:
