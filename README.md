@@ -99,4 +99,94 @@ And then to load it in game you can use the method i said [here](https://github.
 
 # How to import your own car
 
-Soon™
+## Part 1
+
+First open Roblox studio and then open a place
+
+Upload the place
+
+https://user-images.githubusercontent.com/96693526/191606101-8fc9fcb1-a2de-456d-8a0f-4e7f1d08c727.mp4
+
+#### Skip to Part 2 if you already have a rbxm file of the choosen car
+
+Import the car you with it's FBX file
+
+https://user-images.githubusercontent.com/96693526/191606589-442b2206-3c77-47f8-92e5-deaf2d7385a1.mp4
+
+Once the process is done on the left you will get many parts, select all of them, right click and select insert (or insert with location)
+
+https://user-images.githubusercontent.com/96693526/191606893-fd8bd37f-84c0-4265-a7bd-12c7be31f8b4.mp4
+
+Now you can scale the car to the JB vehicles by using free Jailreak Models as references, and then add colors as you want
+
+## Part 2
+
+Select all parts of the car and group them
+
+https://user-images.githubusercontent.com/96693526/191607537-6a975fea-eac8-4bc4-9346-97a49cb2cf12.mp4
+
+In the group you just created, rename all items like this:
+
+-"BrakeLights" for breaklights
+
+-"Windows" for windows
+
+-"Interior1" for the main interior
+
+-"Interior2" if you have a second interior color
+
+-"Body1" for the main body
+
+-"Body2" for the second body
+
+-"BrakeLights2" if your car has reverse lights
+
+-"Carbon" if your car has carbon parts
+
+-"SteeringWheel" for the steeringwheel
+
+-"Seat" for seat
+
+everything else in your car you didn't saw above is optional and can be renamed in anyway you want
+
+Now you gonna group the steering Wheel alone and rename it like this: 
+
+![Group](https://user-images.githubusercontent.com/96693526/191608783-5976db7c-5227-4a2e-a0ee-eed9cf9e7cae.png)
+
+## Part 3
+
+Now add a part in the car Model and rename it "Engine", it should be in the center of the car or at the same position as the main body and should face in this direction:
+
+![Positioning](https://user-images.githubusercontent.com/96693526/191609497-0ea4afeb-8dd8-43be-8e33-a941c373d4dd.png)
+
+After this, select the car model and set the "Engine" part as PrimaryPart like this:
+
+https://user-images.githubusercontent.com/96693526/191609605-c10c5ff4-25f1-441c-a3b7-84f48330383e.mp4
+
+Create a new part called "PrimaryPart" in the "SteeringWheel" group you made earlier and then set the position the same as your steering wheel and make it face this direction:
+
+![direction2](https://user-images.githubusercontent.com/96693526/191610126-5934d54c-a8ab-4a00-9ed7-86a6eaf8a58a.png)
+
+Make the "PrimaryPart" a primary part of the "SteeringWheel" group:
+
+https://user-images.githubusercontent.com/96693526/191610464-2b190305-2c7c-4dd5-a643-00778079630a.mp4
+
+Now duplicate the "PrimaryPart" and rename it "Steer", place it outside of the "SteeringWheel" model
+
+## Part 4
+
+Once you have something similar to this (Engine, Steer and SteeringWheel Group): 
+
+![Final Group](https://user-images.githubusercontent.com/96693526/191611108-95bb547c-a79d-44da-8a8a-80d75700a8eb.png)
+
+You can start using welds:
+
+add a weld constraint in "PrimaryPart", set "Part0" in properties and select "PrimaryPart", then set "Part1" and select "SteeringWheel" like that:
+
+https://user-images.githubusercontent.com/96693526/191612018-583e63ec-af4f-4539-b858-72464d19e525.mp4
+
+Now you need to un-anchor some parts and anchor everything else, to Anchor a part you need to do this:
+
+https://user-images.githubusercontent.com/96693526/191612896-6f09b203-5290-4462-8418-6482284c85fa.mp4
+
+Now you know how to, Anchor everything except "SteeringWheel" part (not the group just the part)
