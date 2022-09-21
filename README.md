@@ -199,4 +199,4 @@ https://user-images.githubusercontent.com/96693526/191613658-cd67e777-dac2-4c89-
 
 ##### Don't forget to Check the box "Distribute on Market Place" to make the importer having an access to your car ID
 
-You did it, you made a car ready to import in Jailbreak ! Now you can do the steps here to configure it and play with it !
+You did it, you made a car ready to import in Jailbreak ! Now you can do the steps [here](https://github.com/DydyWasTaken/RJBCI/blob/main/README.md#how-to-use) to configure it and play with it !
