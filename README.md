@@ -35,7 +35,7 @@ Stats of the car are in developement and some of them dont work yet, it modifies
 First you gonna have a empty menu, here's everything you need to know:
 ![0](https://user-images.githubusercontent.com/96693526/191528182-7e0806f8-db93-4154-a4b7-7b40012ffe4a.png)
 
-Press N to close it or open it again
+Press N to close it or open it again and press P to disable/Enable all gui
 
 # Choosing the vehicle
 
