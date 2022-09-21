@@ -13,7 +13,7 @@ Stats of the car are in developement and some of them dont work yet, it modifies
 
 # Requirements
 
--Synapse X at https://x.synapse.to/ or krnl at https://krnl.vip/ (any other executor won't work or not gonna save presets)
+-[Synapse X](https://x.synapse.to/) or [krnl](https://krnl.vip/) (any other executor won't work or not gonna save presets)
 
 -A vip server for a secure usage (with updates you won't be able to use this in any public server)
 
@@ -33,7 +33,7 @@ Stats of the car are in developement and some of them dont work yet, it modifies
 # How to use
 
 First you gonna have a empty menu, here's everything you need to know:
-![RobloxScreenShot20220921_160041905](https://user-images.githubusercontent.com/96693526/191528182-7e0806f8-db93-4154-a4b7-7b40012ffe4a.png)
+![0](https://user-images.githubusercontent.com/96693526/191528182-7e0806f8-db93-4154-a4b7-7b40012ffe4a.png)
 
 # Choosing the vehicle
 
@@ -55,7 +55,7 @@ Here, you can tell to the importer what the car you imported have or not by chec
 
 Here, you can ajust each wheel, body and seat offset for the car you imported, you can also change size and thickness of each wheel
 
-![RobloxScreenShot20220921_160041905 - Copie (2)](https://user-images.githubusercontent.com/96693526/191531679-20b78def-bdc1-4409-bc3a-c0f525f8be86.png)
+![1](https://user-images.githubusercontent.com/96693526/191531679-20b78def-bdc1-4409-bc3a-c0f525f8be86.png)
 
 ## Sounds:
 
@@ -65,20 +65,20 @@ Here you need to put 5 sound IDs in this a specific order:
 
 (tip: Off sound and idle can be the same)
 
-![RobloxScreenShot20220921_160041905 - Copie (2)](https://user-images.githubusercontent.com/96693526/191539422-d5275651-56da-4053-84d1-c9a8480db24a.png)
+![2](https://user-images.githubusercontent.com/96693526/191539422-d5275651-56da-4053-84d1-c9a8480db24a.png)
 
 ## Saving and loading Presets:
 
 Here, you can save configs you made by typing the slot number you want and then pressing save, same method to load presets, you can also directly load one of the 4th presets above
 
-![RobloxScreenShot20220921_160041905 - Copie (3)](https://user-images.githubusercontent.com/96693526/191532384-4f939e51-da44-4501-9708-b3a08e007116.png)
+![3](https://user-images.githubusercontent.com/96693526/191532384-4f939e51-da44-4501-9708-b3a08e007116.png)
 
 ## How to import configs:
 
-First you gonna need the txt file, here's a sample for the Lexus lfa i made [https://drive.google.com/file/d/1bGVH7eRrKlZloTd0oj-79yR6_xhBLx6c/view?usp=sharing](https://drive.google.com/u/1/uc?id=1bGVH7eRrKlZloTd0oj-79yR6_xhBLx6c&export=download)
+First you gonna need the txt file, here's a sample for the Lexus lfa i made [here](https://drive.google.com/u/1/uc?id=1bGVH7eRrKlZloTd0oj-79yR6_xhBLx6c&export=download)
 
 After this you gonna put this file in the "Workspace" folder in the root directory of your script executor:
 
 https://user-images.githubusercontent.com/96693526/191542821-9323e82d-5727-41bf-b0af-ba5dd02c1965.mp4
 
-
+And then to load it in game you can use the method i said [here](https://github.com/DydyWasTaken/RJBCI/blob/main/README.md#saving-and-loading-presets)
