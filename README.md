@@ -55,6 +55,14 @@ Here, you can tell to the importer what the car you imported have or not by chec
 
 Here, you can ajust each wheel, body and seat offset for the car you imported, you can also change size and thickness of each wheel
 
+For offsets, you need a value like this: -x,-y,-z (move one side, move up, move foward)
+
+For Sizes you need a number
+
+###### be carefull it's adds to the original size so if i use 0.5, it gonna add 0.5 to the original wheel size and not set it to 0.5
+
+###### if you dont have offsets values you can type 0,0,0 instead but it gonna be weird, same for sizes and thickness (use 0)
+
 ![1](https://user-images.githubusercontent.com/96693526/191531679-20b78def-bdc1-4409-bc3a-c0f525f8be86.png)
 
 ## Sounds:
