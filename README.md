@@ -131,6 +131,8 @@ https://user-images.githubusercontent.com/96693526/191607537-6a975fea-eac8-4bc4-
 
 In the group you just created, rename all items like this:
 
+-"HeadLights" for headlights (required)
+
 -"BrakeLights" for breaklights (Optional)
 
 -"Windows" for windows (required)
