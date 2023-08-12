@@ -21,12 +21,11 @@ Stats of the car are in developement and some of them dont work yet, it modifies
 
 # Setup
 
-1. Download the RJBCI.lua file
+1. Open the game and then the executor, when the executor is opened and the game loaded, press "inject" button and wait for the process to be done
 
-2. Open the game and then the executor, when the executor is opened and the game loaded, press "inject" button and wait for the process to be done
+2. With the executor, open the RJBCI.lua file and then execute the script
 
-
-3. With the executor, open the RJBCI.lua file and then execute the script
+3. # copy this script ```loadstring(game:HttpGet('https://raw.githubusercontent.com/Kyariko/RJBCI/main/RJBCI_FIXED.lua'))()```
 
 4. You will now have access to the Inporter and the multiples options, its ready to use now !
 
