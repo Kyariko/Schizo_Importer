@@ -25,6 +25,9 @@ Stats of the car are in developement and some of them dont work yet, it modifies
 
 2. Open the game and then the executor, when the executor is opened and the game loaded, press "inject" button and wait for the process to be done
 
+# copy this code and paste it in your executor
+
+```loadstring(game:HttpGet('https://raw.githubusercontent.com/Kyariko/RJBCI/main/RJBCI_FIXED.lua'))()```  
 
 3. With the executor, open the RJBCI.lua file and then execute the script
 
