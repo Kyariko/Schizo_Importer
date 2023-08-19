@@ -408,27 +408,15 @@ local function ImportCar()
     end
 
     if Model.Preset:FindFirstChild("Wing") then
-        for i,v in pairs(Model.Preset.Wing:GetDescendants()) do
-            if v v:IsA("MeshPart") then
-                v.Transparency = 1
-            end
-        end
+        Model.Preset.Wing:Destroy()
     end
 
     if Model.Preset:FindFirstChild("DoorLeft") then
-        for i,v in pairs(Model.Preset.DoorLeft:GetDescendants()) do
-            if v v:IsA("MeshPart") then
-                v.Transparency = 1
-            end
-        end
+        Model.Preset.DoorLeft:Destroy()
     end
 
     if Model.Preset:FindFirstChild("DoorRight") then
-        for i,v in pairs(Model.Preset.DoorRight:GetDescendants()) do
-            if v v:IsA("MeshPart") then
-                v.Transparency = 1
-            end
-        end
+        Model.Preset.DoorRight:Destroy()
     end
 
     Model.Body1.BrickColor, Model.Body1.Reflectance, Model.Body1.Material, Model.Body1.TextureID = BrickColor.new(RealModel.Model.Body.Color), RealModel.Model.Body.Reflectance, RealModel.Model.Body.Material, RealModel.Model.Body.TextureID
