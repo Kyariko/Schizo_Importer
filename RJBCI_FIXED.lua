@@ -21,8 +21,20 @@ local Importer = game:GetObjects("rbxassetid://10635794622")[1]
 
 Importer.Parent = game.Players.LocalPlayer.PlayerGui
 
+if not isfile("schizo") then
+    makefolder("schizo")
+end
+
+if not isfile("schizo/Models") then
+    makefolder("schizo/Models")
+end
+
+if not isfile("schizo/Saves") then
+    makefolder("schizo/Saves")
+end
+
 game:GetService("UserInputService").InputBegan:Connect(function(key)
-    if key.KeyCode == Enum.KeyCode.N then
+    if key.KeyCode == Enum.KeyCode.U then
         if Importer.Enabled == false then
             Importer.Enabled = true
         else
@@ -35,25 +47,13 @@ local GetLocalVehiclePacket = require(game:GetService("ReplicatedStorage").Vehic
 
 local MarketPlaceService = game:GetService("MarketplaceService")
 
-local Interior2 = false
-local Body2 = false
 local Spoiler = false
 local ActiveSpoiler = false
 local Spoiler2Parts = false
-local BrakeLights = false
 local OverDrive = false
-local Interior1 = false
-local BreakLights2 = false
 local Sound = false
 local Rim = false
 local Carbon = false
-
-local FR
-local FL
-local RL
-local RR
-local BodyOffSet
-local SeatOffset
 
 --Sizes:
 
@@ -70,16 +70,6 @@ local TRL
 local TRR
 
 local function UpdateBools()
-    if Interior1 == false then
-        Importer.Main.Interior1.TextColor3 = Color3.new(0.784314, 0.478431, 0.478431)
-    else
-        Importer.Main.Interior1.TextColor3 = Color3.new(0.478431, 0.784314, 0.478431) 
-    end
-    if Body2 == false then
-        Importer.Main.Body2.TextColor3 = Color3.new(0.784314, 0.478431, 0.478431)
-    else
-        Importer.Main.Body2.TextColor3 = Color3.new(0.478431, 0.784314, 0.478431) 
-    end
     if Spoiler == false then
         Importer.Main.Spoiler.TextColor3 = Color3.new(0.784314, 0.478431, 0.478431)
     else
@@ -99,21 +89,6 @@ local function UpdateBools()
         Importer.Main.OverDrive.TextColor3 = Color3.new(0.784314, 0.478431, 0.478431)
     else
         Importer.Main.OverDrive.TextColor3 = Color3.new(0.478431, 0.784314, 0.478431) 
-    end
-    if BrakeLights == false then
-        Importer.Main.BreakLights.TextColor3 = Color3.new(0.784314, 0.478431, 0.478431)
-    else
-        Importer.Main.BreakLights.TextColor3 = Color3.new(0.478431, 0.784314, 0.478431) 
-    end
-    if BrakeLights2 == false then
-        Importer.Main.BreakLights2.TextColor3 = Color3.new(0.784314, 0.478431, 0.478431)
-    else
-        Importer.Main.BreakLights2.TextColor3 = Color3.new(0.478431, 0.784314, 0.478431) 
-    end
-    if Interior2 == false then
-        Importer.Main.Interior2.TextColor3 = Color3.new(0.784314, 0.478431, 0.478431)
-    else
-        Importer.Main.Interior2.TextColor3 = Color3.new(0.478431, 0.784314, 0.478431) 
     end
     if Sound == false then
         Importer.Main.Sound.TextColor3 = Color3.new(0.784314, 0.478431, 0.478431)
@@ -140,15 +115,10 @@ Importer.Main.Save.MouseButton1Click:Connect(function()
     Notification({Text = "Saved to slot "..Importer.Main.Slot.Text,Duration = 3}) 
         the_table = 
     {
-    Interior2,
-    BrakeLights2,
-    Interior1,
     Spoiler,
     ActiveSpoiler,
     Spoiler2Parts,
-    BrakeLights,
     OverDrive,
-    Body2,
     Sound,
     Carbon,
     Importer.Main.FRSize.Text,
@@ -159,12 +129,6 @@ Importer.Main.Save.MouseButton1Click:Connect(function()
     Importer.Main.FLThickness.Text,
     Importer.Main.RLThickness.Text,
     Importer.Main.RRThickness.Text,
-    Importer.Main.FROffset.Text,
-    Importer.Main.FLOffset.Text,
-    Importer.Main.RLOffset.Text,
-    Importer.Main.RROffset.Text,
-    Importer.Main.BodyOffset.Text,
-    Importer.Main.SeatOffset.Text,
     Importer.Main.CarID.Text,
     Importer.Main.Handling.Text,
     Importer.Main.Height.Text,
@@ -173,118 +137,52 @@ Importer.Main.Save.MouseButton1Click:Connect(function()
     Importer.Main.RimID.Text,
     Rim
     }
-    local name = "Preset"..Importer.Main.Slot.Text..".txt"
+    local name = "schizo/Saves/Preset"..Importer.Main.Slot.Text..".txt"
     writefile(name,httpservice:JSONEncode(the_table))
 end)
 
 local function Assign(tbl,Preset)
-    Interior1 = tbl[3]
-    Body2 = tbl[9]
-    Interior2 = tbl[1]
-    Spoiler = tbl[4]
-    ActiveSpoiler = tbl[5]
-    Spoiler2Parts = tbl[6]
-    BrakeLights = tbl[7]
-    OverDrive = tbl[8]
-    BrakeLights2 = tbl[2]
-    Sound = tbl[10]
-    Carbon = tbl[11]
-    SFR = tonumber(tbl[12])
-    SFL = tonumber(tbl[13])
-    SRL = tonumber(tbl[14])
-    SRR = tonumber(tbl[15])
-    TFR = tonumber(tbl[16])
-    TFL = tonumber(tbl[17])
-    TRL = tonumber(tbl[18])
-    TRR = tonumber(tbl[19])
-    FR = Vector3.new(tbl[20]:match("(.+), (.+), (.+)"))
-    FL = Vector3.new(tbl[21]:match("(.+), (.+), (.+)"))
-    RL = Vector3.new(tbl[22]:match("(.+), (.+), (.+)"))
-    RR = Vector3.new(tbl[23]:match("(.+), (.+), (.+)"))
-    BodyOffSet = Vector3.new(tbl[24]:match("(.+), (.+), (.+)"))
-    SeatOffset = Vector3.new(tbl[25]:match("(.+),(.+),(.+)"))
-    Id = tonumber(tbl[26])
-    Handling = tonumber(tbl[27])
-    SoundID = tonumber(tbl[28])
-    SpeedEngine = tonumber(tbl[30])
-    Importer.Main.FROffset.Text = tbl[20]
-    Importer.Main.FLOffset.Text = tbl[21]
-    Importer.Main.RLOffset.Text = tbl[22]
-    Importer.Main.RROffset.Text = tbl[23]
-    Importer.Main.BodyOffset.Text = tbl[24]
-    Importer.Main.SeatOffset.Text = tbl[25]
-    Importer.Main.FRSize.Text = tbl[12]
-    Importer.Main.FLSize.Text = tbl[13]
-    Importer.Main.RLSize.Text = tbl[14]
-    Importer.Main.RRSize.Text = tbl[15]
-    Importer.Main.FRThickness.Text = tbl[16]
-    Importer.Main.FLThickness.Text = tbl[17]
-    Importer.Main.RLThickness.Text = tbl[18]
-    Importer.Main.RRThickness.Text = tbl[19]
-    Importer.Main.CarID.Text = tbl[26]
-    Importer.Main.Handling.Text = tbl[27]
-    Importer.Main.Height.Text = tbl[28]
-    Importer.Main.SoundID.Text = tbl[29]
-    Importer.Main.Speed.Text = tbl[30]
-    Importer.Main.RimID.Text = tbl[31]
-    Rim = tbl[32]
+    Spoiler = tbl[1]
+    ActiveSpoiler = tbl[2]
+    Spoiler2Parts = tbl[3]
+    OverDrive = tbl[4]
+    Sound = tbl[5]
+    Carbon = tbl[6]
+    SFR = tonumber(tbl[7])
+    SFL = tonumber(tbl[8])
+    SRL = tonumber(tbl[9])
+    SRR = tonumber(tbl[10])
+    TFR = tonumber(tbl[11])
+    TFL = tonumber(tbl[12])
+    TRL = tonumber(tbl[13])
+    TRR = tonumber(tbl[14])
+    Id = tonumber(tbl[15])
+    Handling = tonumber(tbl[16])
+    Height = tonumber(tbl[17])
+    SoundID = tonumber(tbl[18])
+    SpeedEngine = tonumber(tbl[19])
+    Importer.Main.FRSize.Text = tbl[7]
+    Importer.Main.FLSize.Text = tbl[8]
+    Importer.Main.RLSize.Text = tbl[9]
+    Importer.Main.RRSize.Text = tbl[10]
+    Importer.Main.FRThickness.Text = tbl[11]
+    Importer.Main.FLThickness.Text = tbl[12]
+    Importer.Main.RLThickness.Text = tbl[13]
+    Importer.Main.RRThickness.Text = tbl[14]
+    Importer.Main.CarID.Text = tbl[15]
+    Importer.Main.Handling.Text = tbl[16]
+    Importer.Main.Height.Text = tbl[17]
+    Importer.Main.SoundID.Text = tbl[18]
+    Importer.Main.Speed.Text = tbl[19]
+    Importer.Main.RimID.Text = tbl[20]
+    Rim = tbl[21]
     Notification({Text = "Loaded Preset "..Preset,Duration = 0.7}) 
     UpdateBools()
 end
 
 Importer.Main.Load.MouseButton1Click:Connect(function()
-    local tbl = httpservice:JSONDecode(readfile("Preset"..Importer.Main.Slot.Text..".txt"))
+    local tbl = httpservice:JSONDecode(readfile("schizo/Saves/Preset"..Importer.Main.Slot.Text..".txt"))
     Assign(tbl,tonumber(Importer.Main.Slot.Text))
-end)
-
-Importer.Main.BreakLights.MouseButton1Click:Connect(function()
-    if BrakeLights == false then
-        BrakeLights = true
-        Importer.Main.BreakLights.TextColor3 = Color3.new(0.478431, 0.784314, 0.478431) 
-    else
-        BrakeLights = false
-        Importer.Main.BreakLights.TextColor3 = Color3.new(0.784314, 0.478431, 0.478431)
-    end
-end)
-
-Importer.Main.BreakLights2.MouseButton1Click:Connect(function()
-    if BrakeLights2 == false then
-        BrakeLights2 = true
-        Importer.Main.BreakLights2.TextColor3 = Color3.new(0.478431, 0.784314, 0.478431) 
-    else
-        BrakeLights2 = false
-        Importer.Main.BreakLights2.TextColor3 = Color3.new(0.784314, 0.478431, 0.478431)
-    end
-end)
-
-Importer.Main.Interior1.MouseButton1Click:Connect(function()
-    if Interior1 == false then
-        Interior1 = true
-        Importer.Main.Interior1.TextColor3 = Color3.new(0.478431, 0.784314, 0.478431) 
-    else
-        Interior1 = false
-        Importer.Main.Interior1.TextColor3 = Color3.new(0.784314, 0.478431, 0.478431)
-    end
-end)
-
-Importer.Main.Interior2.MouseButton1Click:Connect(function()
-    if Interior2 == false then
-        Interior2 = true
-        Importer.Main.Interior2.TextColor3 = Color3.new(0.478431, 0.784314, 0.478431) 
-    else
-        Interior2 = false
-        Importer.Main.Interior2.TextColor3 = Color3.new(0.784314, 0.478431, 0.478431)
-    end
-end)
-
-Importer.Main.Body2.MouseButton1Click:Connect(function()
-    if Body2 == false then
-        Body2 = true
-        Importer.Main.Body2.TextColor3 = Color3.new(0.478431, 0.784314, 0.478431) 
-    else
-        Body2 = false
-        Importer.Main.Body2.TextColor3 = Color3.new(0.784314, 0.478431, 0.478431)
-    end
 end)
 
 Importer.Main.Spoiler.MouseButton1Click:Connect(function()
@@ -385,13 +283,16 @@ end
 
 local function ImportCar()
     local Id = Importer.Main.CarID.Text
+    if Id == "" then
+        return
+    end
     local RimID = Importer.Main.RimID.Text
-    FR = toVector3(Importer.Main.FROffset.Text,',')
-    FL = toVector3(Importer.Main.FLOffset.Text,',')
-    RL = toVector3(Importer.Main.RLOffset.Text,',')
-    RR = toVector3(Importer.Main.RROffset.Text,',')
-    BodyOffSet = toVector3(Importer.Main.BodyOffset.Text,',')
-    SeatOffset = toVector3(Importer.Main.SeatOffset.Text,',')
+    if isfile("schizo/Models/"..Importer.Main.CarID.Text..".rbxm") then
+        Model = game:GetObjects(getsynasset("schizo/Models/"..Importer.Main.CarID.Text..".rbxm" ))[1]
+    else
+        Model = game:GetObjects("rbxassetid://" .. Importer.Main.CarID.Text)[1]
+    end
+    local RealModel = GetLocalVehiclePacket().Model
     SFR = tonumber(Importer.Main.FRSize.Text)
     SFL = tonumber(Importer.Main.FLSize.Text)
     SRL = tonumber(Importer.Main.RLSize.Text)
@@ -406,12 +307,6 @@ local function ImportCar()
     local CustomCam = true
     local Speed
     local RevTurbine
-    if isfile("Models/"..Importer.Main.CarID.Text..".rbxm") then
-        Model = game:GetObjects(getsynasset("Models/"..Importer.Main.CarID.Text..".rbxm" ))[1]
-    else
-        Model = game:GetObjects("rbxassetid://" .. Importer.Main.CarID.Text)[1]
-    end
-    local RealModel = GetLocalVehiclePacket().Model
     Models[RealModel] = Model
     Notification({Text = "Car Imported: "..Model.Name,Duration = 3}) 
     RealModel.Model.Windows.Size = Vector3.new(0.01,0.01,0.01)
@@ -428,6 +323,33 @@ local function ImportCar()
             end
         end
     end
+    Model.Parent = RealModel
+    Model:SetPrimaryPartCFrame(RealModel.PrimaryPart.CFrame)
+
+    SeatOffset = Vector3.new(Model.Seat.Position - RealModel.Seat.Position)
+
+    local function AssignPosition(WheelName)
+        local c = Model.Wheels[WheelName].Position
+        return c
+    end
+
+    for i,v in next, RealModel:GetDescendants() do
+        if v.Name == "Thrust" then
+            for i,w in pairs(v:GetDescendants()) do
+                if w.Name == "Motor" then
+                    if w.Part0.Parent.Name == "WheelFrontRight" then
+                        v.Position = AssignPosition(w.Part0.Parent.Name)
+                    elseif w.Part0.Parent.Name == "WheelFrontLeft" then
+                        v.Position = AssignPosition(w.Part0.Parent.Name)
+                    elseif w.Part0.Parent.Name == "WheelBackLeft" then
+                        v.Position = AssignPosition(w.Part0.Parent.Name)
+                    elseif w.Part0.Parent.Name == "WheelBackRight" then
+                        v.Position = AssignPosition(w.Part0.Parent.Name)
+                    end
+                end
+            end
+        end
+    end
 
     if ActiveSpoiler == true then
         for i,v in pairs(RealModel.Preset.Wing:GetDescendants()) do
@@ -439,20 +361,13 @@ local function ImportCar()
 
     RealModel.Model.Body.Position = RealModel.Model.Body.CFrame * Vector3.new(0,1,0)
 
-    for i,v in next, Model:GetDescendants() do
-        if v:IsA("MeshPart") then
-            v.DoubleSided = true
-        end
+    if Model:FindFirstChild("Interior1") and RealModel.Model:FindFirstChild("Interior") then
+        RealModel.InsideCamera.Position = Model.InsideCamera.Position
+        RealModel.Seat.Position = Model.Seat.Position - Vector3.new(0,1,0)
+        RealModel.Passenger.Position = Model.Passenger.Position - Vector3.new(0,1,0)
     end
 
-    if Interior1 == true then
-        local CamOffset = Vector3.new(SeatOffset.X,SeatOffset.Y - 0.2,SeatOffset.Z - 0.1)
-        RealModel.InsideCamera.Position = RealModel.InsideCamera.CFrame * CamOffset
-        RealModel.Seat.Position = RealModel.Seat.CFrame * SeatOffset
-        RealModel.Passenger.Position = RealModel.Passenger.CFrame * Vector3.new(-SeatOffset.X,SeatOffset.Y,SeatOffset.Z)
-    end
-
-    if BrakeLights == true then
+    if Model:FindFirstChild("BrakeLights") then
         local BrakeLightColor = Model.BrakeLights.Color
     end
 
@@ -467,69 +382,14 @@ local function ImportCar()
     local OGRR = RealModel.Preset.WheelBackRight.Wheel.Size + Vector3.new(TRR,SRR,SRR)
     local OGRR2 = RealModel.Preset.WheelBackRight.Rim.Size + Vector3.new(TRR*0.99,SRR*0.75,SRR*0.75)
 
-    for i,v in next, RealModel:GetDescendants() do
-        if v.Name == "Thrust" then
-            for i,w in pairs(v:GetDescendants()) do
-                if w.Name == "Motor" then
-                    if w.Part0.Parent.Name == "WheelFrontRight" then
-                        v.Position = v.CFrame * FR
-                    elseif w.Part0.Parent.Name == "WheelFrontLeft" then
-                        v.Position = v.CFrame * FL
-                    elseif w.Part0.Parent.Name == "WheelBackLeft" then
-                        v.Position = v.CFrame * RL
-                    elseif w.Part0.Parent.Name == "WheelBackRight" then
-                        v.Position = v.CFrame * RR
-                    end
-                end
-            end
-        end
-    end
-
-    Model.Parent = RealModel
+    RealModel.Model.plate.Position = Model.plate.Position
+    RealModel.Model.plate.Orientation = Model.plate.Orientation
     Workspace.CurrentCamera.CameraSubject = RealModel.Model.Body
-
-    if Sound == true then
-        local Table = Importer.Main.SoundID.Text
-
-        local SOUND = Table:split(',')
-
-        local Custom = {"rbxassetid://"..SOUND[1],"rbxassetid://"..SOUND[2],"rbxassetid://"..SOUND[3],"rbxassetid://"..SOUND[4],"rbxassetid://"..SOUND[5]}
-
-        local Volume = 10
-        for i,v in pairs(GetLocalVehiclePacket().Model.Engine:GetDescendants()) do
-            if v:IsA("Sound") then
-                current = string.match(v.SoundId, "%d+$")
-                local success, asset = pcall(MarketPlaceService.GetProductInfo,MarketPlaceService,current)
-                if not Debug then
-                    if asset.Name == "F40ex_offlow" or asset.Name == "NEW_MuscleOfflow" then
-                       v.SoundId = Custom[1] 
-                    end
-                    if asset.Name == "F40ex_onhigh" or asset.Name == "muscle_onhigh" then
-                       v.SoundId = Custom[5] 
-                    end
-                    if asset.Name == "F40ex_onlow" or asset.Name == "muscle_onlow" then
-                       v.SoundId = Custom[3] 
-                    end
-                    if asset.Name == "F40ex_idle" then
-                       v.SoundId = Custom[2] 
-                    elseif asset.Name == "muscle_idle" then
-                       v.SoundId = Custom[2]
-                    elseif asset.Name == "electric_loop_v2" then
-                       v.SoundId = Custom[4] 
-                    end
-                    if asset.Name == "NEW_F40Mid2" or asset.Name == "muscle_onmid" then
-                       v.SoundId = Custom[4]
-                    end
-                end
-            end
-        end
-    end
 
     local Spoiler1Pos
     local Spoiler2Pos
     local SteerPos = Model.Engine.CFrame:ToObjectSpace(Model.Steer.CFrame)
     local SteerPos2 = Model.Engine.CFrame:ToObjectSpace(Model.SteeringWheel.PrimaryPart.CFrame)
-    
 
     if ActiveSpoiler == true then
         Spoiler1Pos = Model.Engine.CFrame:ToObjectSpace(Model.Spoiler1.CFrame)
@@ -547,11 +407,7 @@ local function ImportCar()
 
     game:GetService("UserInputService").InputBegan:Connect(function(input)
         if input.KeyCode == Enum.KeyCode.P then
-            if Bool == true then
-                Bool = false
-            else
-                Bool = true
-            end
+            Bool = not Bool
         end
     end)
 
@@ -578,6 +434,43 @@ local function ImportCar()
         end
     end
 
+
+
+    if Sound == true then
+        local Table = Importer.Main.SoundID.Text
+
+        local SOUND = Table:split(',')
+
+        local Custom = {"rbxassetid://"..SOUND[1],"rbxassetid://"..SOUND[2],"rbxassetid://"..SOUND[3],"rbxassetid://"..SOUND[4],"rbxassetid://"..SOUND[5]}
+
+        local Volume = 10
+        for i,v in pairs(require(game:GetService("ReplicatedStorage").Vehicle.VehicleUtils).GetLocalVehiclePacket().Model.Engine:GetDescendants()) do
+            if v:IsA("Sound") then
+                current = string.match(v.SoundId, "%d+$")
+                local success, asset = pcall(MarketPlaceService.GetProductInfo,MarketPlaceService,current)
+                if asset.Name == "F40ex_offlow" or asset.Name == "NEW_MuscleOfflow" then
+                    v.SoundId = Custom[1] 
+                end
+                if asset.Name == "F40ex_onhigh" or asset.Name == "muscle_onhigh" then
+                    v.SoundId = Custom[5] 
+                end
+                if asset.Name == "F40ex_onlow" or asset.Name == "muscle_onlow" then
+                    v.SoundId = Custom[3] 
+                end
+                if asset.Name == "F40ex_idle" then
+                    v.SoundId = Custom[2] 
+                elseif asset.Name == "muscle_idle" then
+                    v.SoundId = Custom[2]
+                elseif asset.Name == "electric_loop_v2" then
+                    v.SoundId = Custom[4] 
+                end
+                if asset.Name == "NEW_F40Mid2" or asset.Name == "muscle_onmid" then
+                    v.SoundId = Custom[4]
+                end
+            end
+        end
+    end
+
     local connection
 
     connection = game:GetService("RunService").RenderStepped:Connect(function()
@@ -585,7 +478,7 @@ local function ImportCar()
         if GetLocalVehiclePacket() ~= nil then
 		    
             RealModel = GetLocalVehiclePacket().Model
-		    GetLocalVehiclePacket().Height = 2.5 + Height
+		    GetLocalVehiclePacket().Height = Height
 		    GetLocalVehiclePacket().TurnSpeed = Handling
 		    GetLocalVehiclePacket().GarageEngineSpeed = SpeedEngine
 	        --speed Calculator not by Dydy------------
@@ -646,8 +539,8 @@ local function ImportCar()
 	                        v.SpotLight.Color = Color3.fromRGB(255,255,255)
 	                    end
 	                end
-	                if BrakeLights == true then
-	                    if BrakeLights2 == true then
+	                if Model:FindFirstChild("BrakeLights")  then
+	                    if Model:FindFirstChild("BrakeLights2")  then
 	                        Model.BrakeLights2.Material = Enum.Material.Neon
 	                        Model.BrakeLights.Material = Enum.Material.SmoothPlastic
 	                    else
@@ -661,9 +554,9 @@ local function ImportCar()
 	                        v.SpotLight.Color = Color3.fromRGB(255, 0, 0)
 	                    end
 	                end
-	                if BrakeLights == true then
+	                if Model:FindFirstChild("BrakeLights") and RealModel.Model:FindFirstChild("Brakelights") then
 	                    Model.BrakeLights.Material = RealModel.Model.Brakelights.Material
-	                    if BrakeLights2 == true then
+	                    if Model:FindFirstChild("BrakeLights2") then
 	                        Model.BrakeLights2.Material = Enum.Material.SmoothPlastic
 	                    else
 	                        Model.BrakeLights.BrickColor = BrickColor.new(41)
@@ -687,8 +580,8 @@ local function ImportCar()
                             function AssignRim(ImportedRim,OriginalRim,WheelModel)
                                 if RealModel.Preset[tostring(WheelModel)]:FindFirstChild(ImportedRim) == nil then
                                     local RimClonedFunction
-                                    if isfile("Models/"..ImportedRim..".rbxm") then
-                                        RimClonedFunction = game:GetObjects(getsynasset("Models/"..ImportedRim..".rbxm" ))[1]
+                                    if isfile("schizo/Models/"..ImportedRim..".rbxm") then
+                                        RimClonedFunction = game:GetObjects(getsynasset("schizo/Models/"..ImportedRim..".rbxm" ))[1]
                                     else
                                         RimClonedFunction = game:GetObjects("rbxassetid://" .. ImportedRim)[1]
                                     end
@@ -713,9 +606,9 @@ local function ImportCar()
                         RealModel.Preset.WheelBackRight.Wheel.Size = OGRR
                         RealModel.Preset.WheelBackRight.Rim.Size = OGRR2
                     end
-	
+
 	                Model.Body1.BrickColor, Model.Body1.Reflectance, Model.Body1.Material, Model.Body1.TextureID = BrickColor.new(RealModel.Model.Body.Color), RealModel.Model.Body.Reflectance, RealModel.Model.Body.Material, RealModel.Model.Body.TextureID
-	                if Body2 == true then
+	                if Model:FindFirstChild("Body2") and RealModel.Model:FindFirstChild("SecondBody") then
 	                    Model.Body2.BrickColor, Model.Body2.Reflectance, Model.Body2.Material, Model.Body2.TextureID = BrickColor.new(RealModel.Model.SecondBody.Color), RealModel.Model.SecondBody.Reflectance, RealModel.Model.SecondBody.Material, RealModel.Model.SecondBody.TextureID
 	                    if Carbon then
 	                        Model.Body2.Material = Enum.Material.Plastic
@@ -725,17 +618,16 @@ local function ImportCar()
 	                else
 	                    if Carbon then
 	                        Model.Body1.Material = Enum.Material.Plastic
-	
 	                        Model.Body1.MaterialVariant = "CarbonFiber"
 	                    end
 	                end
 	                Model.HeadLights.Material = RealModel.Model.Headlights.Material
 	                Model.HeadLights.BrickColor = BrickColor.new(RealModel.Model.Headlights.Color)
 	
-	                if Interior1 == true then
+	                if Model:FindFirstChild("Interior1") and RealModel.Model:FindFirstChild("Interior") then
 	                    Model.Interior1.BrickColor  = BrickColor.new(RealModel.Model.Interior.Color)
 	                end
-	                if Interior2 == true then
+	                if Model:FindFirstChild("Interior2") and RealModel.Model:FindFirstChild("SecondInterior") then
 	                    Model.Interior2.BrickColor = BrickColor.new(RealModel.Model.SecondInterior.Color)
 	                end
 	                if Spoiler == true then
@@ -759,7 +651,7 @@ local function ImportCar()
 	                        end
 	                    end
 	                end
-	                Model:SetPrimaryPartCFrame(RealModel.PrimaryPart.CFrame * CFrame.new(BodyOffSet) * CFrame.Angles(0,0,0))
+	                Model:SetPrimaryPartCFrame(RealModel.PrimaryPart.CFrame)
 	            end
 	        end
         end
