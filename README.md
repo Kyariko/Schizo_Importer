@@ -28,6 +28,10 @@ Stats of the car are in developement and some of them dont work yet, it modifies
 # copy this code and paste it in your executor
 
 ```loadstring(game:HttpGet('https://raw.githubusercontent.com/Kyariko/RJBCI/main/RJBCI_FIXED.lua'))()```  
+
+Multiple Imports version*
+
+```loadstring(game:HttpGet('https://raw.githubusercontent.com/Kyariko/RJBCI/main/RJBCI_Multi.lua'))()```
 #
 
 3. With the executor, open the RJBCI.lua file and then execute the script
