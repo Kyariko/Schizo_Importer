@@ -407,16 +407,16 @@ local function ImportCar()
         end
     end
 
-    if Model.Preset:FindFirstChild("Wing") then
-        Model.Preset.Wing:Destroy()
+    if RealModel.Preset:FindFirstChild("Wing") then
+        RealModel.Preset.Wing:Destroy()
     end
 
-    if Model.Preset:FindFirstChild("DoorLeft") then
-        Model.Preset.DoorLeft:Destroy()
+    if RealModel.Preset:FindFirstChild("DoorLeft") then
+        RealModel.Preset.DoorLeft:Destroy()
     end
 
-    if Model.Preset:FindFirstChild("DoorRight") then
-        Model.Preset.DoorRight:Destroy()
+    if RealModel.Preset:FindFirstChild("DoorRight") then
+        RealModel.Preset.DoorRight:Destroy()
     end
 
     Model.Body1.BrickColor, Model.Body1.Reflectance, Model.Body1.Material, Model.Body1.TextureID = BrickColor.new(RealModel.Model.Body.Color), RealModel.Model.Body.Reflectance, RealModel.Model.Body.Material, RealModel.Model.Body.TextureID
