@@ -21,6 +21,18 @@ local Importer = game:GetObjects("rbxassetid://14421297677")[1]
 
 Importer.Parent = game.Players.LocalPlayer.PlayerGui
 
+if not isfile("schizo") then
+    makefolder("schizo")
+end
+
+if not isfile("schizo/Models") then
+    makefolder("schizo/Models")
+end
+
+if not isfile("schizo/Saves") then
+    makefolder("schizo/Saves")
+end
+
 game:GetService("UserInputService").InputBegan:Connect(function(key)
     if key.KeyCode == Enum.KeyCode.U then
         if Importer.Enabled == false then
@@ -101,7 +113,7 @@ Importer.Main.Save.MouseButton1Click:Connect(function()
     Rim,
     Height
     }
-    local name = "PresetMulti"..Importer.Main.Slot.Text..".txt"
+    local name = "schizo/Saves/PresetMulti"..Importer.Main.Slot.Text..".txt"
     writefile(name,httpservice:JSONEncode(the_table))
 end)
 
@@ -138,7 +150,7 @@ local function Assign(tbl,Preset)
 end
 
 Importer.Main.Load.MouseButton1Click:Connect(function()
-    local tbl = httpservice:JSONDecode(readfile("PresetMulti"..Importer.Main.Slot.Text..".txt"))
+    local tbl = httpservice:JSONDecode(readfile("schizo/Saves/PresetMulti"..Importer.Main.Slot.Text..".txt"))
     Assign(tbl,tonumber(Importer.Main.Slot.Text))
 end)
 
@@ -219,8 +231,8 @@ local function ImportCar()
         return
     end
     local RimID = Importer.Main.RimID.Text
-    if isfile("Models/"..Importer.Main.CarID.Text..".rbxm") then
-        Model = game:GetObjects(getsynasset("Models/"..Importer.Main.CarID.Text..".rbxm" ))[1]
+    if isfile("schizo/Models/"..Importer.Main.CarID.Text..".rbxm") then
+        Model = game:GetObjects(getsynasset("schizo/Models/"..Importer.Main.CarID.Text..".rbxm" ))[1]
     else
         Model = game:GetObjects("rbxassetid://" .. Importer.Main.CarID.Text)[1]
     end
@@ -274,9 +286,8 @@ local function ImportCar()
         end
     end
     Model.Parent = RealModel
-    Model:SetPrimaryPartCFrame(RealModel.PrimaryPart.CFrame * CFrame.new(0,Height,0))
-
-    SeatOffset = Vector3.new(Model.Seat.Position - RealModel.Seat.Position)
+    Height = tonumber(Importer.Main.Height.Text)
+    Model:SetPrimaryPartCFrame(RealModel.PrimaryPart.CFrame + Vector3.new(0,Height,0))
 
     local function AssignPosition(WheelName)
         local c = Model.Wheels[WheelName].Position
@@ -457,7 +468,7 @@ local function ImportCar()
                 if RealModel.Preset[tostring(WheelModel)]:FindFirstChild(ImportedRim) == nil then
                     local RimClonedFunction
                     if isfile("Models/"..ImportedRim..".rbxm") then
-                        RimClonedFunction = game:GetObjects(getsynasset("Models/"..ImportedRim..".rbxm" ))[1]
+                        RimClonedFunction = game:GetObjects(getsynasset("schizo/Models/"..ImportedRim..".rbxm" ))[1]
                     else
                         RimClonedFunction = game:GetObjects("rbxassetid://" .. ImportedRim)[1]
                     end
