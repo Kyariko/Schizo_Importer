@@ -34,9 +34,6 @@ end)
 local MarketPlaceService = game:GetService("MarketplaceService")
 
 local Spoiler = false
-local ActiveSpoiler = false
-local Spoiler2Parts = false
-local OverDrive = false
 local Sound = false
 local Rim = false
 local Carbon = false
@@ -61,21 +58,6 @@ local function UpdateBools()
         Importer.Main.Spoiler.TextColor3 = Color3.new(0.784314, 0.478431, 0.478431)
     else
         Importer.Main.Spoiler.TextColor3 = Color3.new(0.478431, 0.784314, 0.478431) 
-    end
-    if ActiveSpoiler == false then
-        Importer.Main.ActiveSpoiler.TextColor3 = Color3.new(0.784314, 0.478431, 0.478431)
-    else
-        Importer.Main.ActiveSpoiler.TextColor3 = Color3.new(0.478431, 0.784314, 0.478431) 
-    end
-    if Spoiler2Parts == false then
-        Importer.Main.Spoiler2Parts.TextColor3 = Color3.new(0.784314, 0.478431, 0.478431)
-    else
-        Importer.Main.Spoiler2Parts.TextColor3 = Color3.new(0.478431, 0.784314, 0.478431) 
-    end
-    if OverDrive == false then
-        Importer.Main.OverDrive.TextColor3 = Color3.new(0.784314, 0.478431, 0.478431)
-    else
-        Importer.Main.OverDrive.TextColor3 = Color3.new(0.478431, 0.784314, 0.478431) 
     end
     if Sound == false then
         Importer.Main.Sound.TextColor3 = Color3.new(0.784314, 0.478431, 0.478431)
@@ -103,9 +85,6 @@ Importer.Main.Save.MouseButton1Click:Connect(function()
         the_table = 
     {
     Spoiler,
-    ActiveSpoiler,
-    Spoiler2Parts,
-    OverDrive,
     Sound,
     Carbon,
     Importer.Main.FRSize.Text,
@@ -128,35 +107,32 @@ end)
 
 local function Assign(tbl,Preset)
     Spoiler = tbl[1]
-    ActiveSpoiler = tbl[2]
-    Spoiler2Parts = tbl[3]
-    OverDrive = tbl[4]
-    Sound = tbl[5]
-    Carbon = tbl[6]
-    SFR = tonumber(tbl[7])
-    SFL = tonumber(tbl[8])
-    SRL = tonumber(tbl[9])
-    SRR = tonumber(tbl[10])
-    TFR = tonumber(tbl[11])
-    TFL = tonumber(tbl[12])
-    TRL = tonumber(tbl[13])
-    TRR = tonumber(tbl[14])
-    Id = tonumber(tbl[15])
-    SoundID = tonumber(tbl[16])
-    Height = tonumber(tbl[19])
-    Importer.Main.FRSize.Text = tbl[7]
-    Importer.Main.FLSize.Text = tbl[8]
-    Importer.Main.RLSize.Text = tbl[9]
-    Importer.Main.RRSize.Text = tbl[10]
-    Importer.Main.FRThickness.Text = tbl[11]
-    Importer.Main.FLThickness.Text = tbl[12]
-    Importer.Main.RLThickness.Text = tbl[13]
-    Importer.Main.RRThickness.Text = tbl[14]
-    Importer.Main.CarID.Text = tbl[15]
-    Importer.Main.SoundID.Text = tbl[16]
-    Importer.Main.RimID.Text = tbl[17]
-    Rim = tbl[18]
-    Importer.Main.Height.Text = tbl[19]
+    Sound = tbl[2]
+    Carbon = tbl[3]
+    SFR = tonumber(tbl[4])
+    SFL = tonumber(tbl[5])
+    SRL = tonumber(tbl[6])
+    SRR = tonumber(tbl[7])
+    TFR = tonumber(tbl[8])
+    TFL = tonumber(tbl[9])
+    TRL = tonumber(tbl[10])
+    TRR = tonumber(tbl[11])
+    Id = tonumber(tbl[12])
+    SoundID = tonumber(tbl[13])
+    Height = tonumber(tbl[14])
+    Importer.Main.FRSize.Text = tbl[4]
+    Importer.Main.FLSize.Text = tbl[5]
+    Importer.Main.RLSize.Text = tbl[6]
+    Importer.Main.RRSize.Text = tbl[7]
+    Importer.Main.FRThickness.Text = tbl[8]
+    Importer.Main.FLThickness.Text = tbl[9]
+    Importer.Main.RLThickness.Text = tbl[10]
+    Importer.Main.RRThickness.Text = tbl[11]
+    Importer.Main.CarID.Text = tbl[12]
+    Importer.Main.SoundID.Text = tbl[13]
+    Importer.Main.RimID.Text = tbl[14]
+    Rim = tbl[15]
+    Importer.Main.Height.Text = tbl[16]
     Notification({Text = "Loaded Preset "..Preset,Duration = 0.7}) 
     UpdateBools()
 end
@@ -173,36 +149,6 @@ Importer.Main.Spoiler.MouseButton1Click:Connect(function()
     else
         Spoiler = false
         Importer.Main.Spoiler.TextColor3 = Color3.new(0.784314, 0.478431, 0.478431)
-    end
-end)
-
-Importer.Main.Spoiler2Parts.MouseButton1Click:Connect(function()
-    if Spoiler2Parts == false then
-        Spoiler2Parts = true
-        Importer.Main.Spoiler2Parts.TextColor3 = Color3.new(0.478431, 0.784314, 0.478431) 
-    else
-        Spoiler2Parts = false
-        Importer.Main.Spoiler2Parts.TextColor3 = Color3.new(0.784314, 0.478431, 0.478431)
-    end
-end)
-
-Importer.Main.ActiveSpoiler.MouseButton1Click:Connect(function()
-    if ActiveSpoiler == false then
-        ActiveSpoiler = true
-        Importer.Main.ActiveSpoiler.TextColor3 = Color3.new(0.478431, 0.784314, 0.478431) 
-    else
-        ActiveSpoiler = false
-        Importer.Main.ActiveSpoiler.TextColor3 = Color3.new(0.784314, 0.478431, 0.478431)
-    end
-end)
-
-Importer.Main.OverDrive.MouseButton1Click:Connect(function()
-    if OverDrive == false then
-        OverDrive = true
-        Importer.Main.OverDrive.TextColor3 = Color3.new(0.478431, 0.784314, 0.478431) 
-    else
-        OverDrive = false
-        Importer.Main.OverDrive.TextColor3 = Color3.new(0.784314, 0.478431, 0.478431)
     end
 end)
 
@@ -355,14 +301,6 @@ local function ImportCar()
         end
     end
 
-    if ActiveSpoiler == true then
-        for i,v in pairs(RealModel.Preset.Wing:GetDescendants()) do
-            if v:IsA("Part") or v:IsA("MeshPart") then
-                v.Transparency = 1
-            end
-        end
-    end
-
     RealModel.Model.Body.Position = RealModel.Model.Body.CFrame * Vector3.new(0,1,0)
 
     if Model:FindFirstChild("Interior1") and RealModel.Model:FindFirstChild("Interior") then
@@ -389,17 +327,8 @@ local function ImportCar()
     RealModel.Model.plate.Position = Model.plate.Position
     RealModel.Model.plate.Orientation = Model.plate.Orientation
 
-    local Spoiler1Pos
-    local Spoiler2Pos
     local SteerPos = Model.Engine.CFrame:ToObjectSpace(Model.Steer.CFrame)
     local SteerPos2 = Model.Engine.CFrame:ToObjectSpace(Model.SteeringWheel.PrimaryPart.CFrame)
-
-    if ActiveSpoiler == true then
-        Spoiler1Pos = Model.Engine.CFrame:ToObjectSpace(Model.Spoiler1.CFrame)
-        if Spoiler2Parts == true then
-            Spoiler2Pos = Model.Engine.CFrame:ToObjectSpace(Model.Spoiler2.CFrame)
-        end
-    end
 
     local LocalPlayer = game:GetService("Players").LocalPlayer
     local humanoidRootPart = LocalPlayer.Character:WaitForChild("Humanoid")
@@ -474,6 +403,30 @@ local function ImportCar()
                 if asset.Name == "NEW_F40Mid2" or asset.Name == "muscle_onmid" then
                     v.SoundId = Custom[4]
                 end
+            end
+        end
+    end
+
+    if Model.Preset:FindFirstChild("Wing") then
+        for i,v in pairs(Model.Preset.Wing:GetDescendants()) do
+            if v v:IsA("MeshPart") then
+                v.Transparency = 1
+            end
+        end
+    end
+
+    if Model.Preset:FindFirstChild("DoorLeft") then
+        for i,v in pairs(Model.Preset.DoorLeft:GetDescendants()) do
+            if v v:IsA("MeshPart") then
+                v.Transparency = 1
+            end
+        end
+    end
+
+    if Model.Preset:FindFirstChild("DoorRight") then
+        for i,v in pairs(Model.Preset.DoorRight:GetDescendants()) do
+            if v v:IsA("MeshPart") then
+                v.Transparency = 1
             end
         end
     end
