@@ -531,6 +531,9 @@ local function ImportCar()
     if Model:FindFirstChild("Interior2") and RealModel.Model:FindFirstChild("SecondInterior") then
         RealModel.Model.SecondInterior:GetPropertyChangedSignal("Color"):Connect(function()
             Model.Interior2.BrickColor = BrickColor.new(RealModel.Model.SecondInterior.Color)
+	    if Model.SteeringWheel:FindFirstChild("Interior2") then
+		Model.SteeringWheel.Interior2.BrickColor = BrickColor.new(RealModel.Model.SecondInterior.Color)
+	    end
         end)
     end
 
