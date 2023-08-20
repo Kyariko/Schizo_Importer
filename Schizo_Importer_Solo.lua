@@ -279,25 +279,6 @@ local function ImportCar()
     else
         Model = game:GetObjects("rbxassetid://" .. Importer.Main.CarID.Text)[1]
     end
-
-	if Model:FindFirstChild("Interior1") and RealModel.Model:FindFirstChild("Interior") then
-		local Models = {}
-		
-		local AlexChassis = require(ReplicatedStorage.Module.AlexChassis)
-		local UpdateStepped = AlexChassis.UpdateStepped
-		AlexChassis.UpdateStepped = function(Packet)
-		    if rawget(Models, Packet.Model) then
-			Packet = {
-			    IK = Packet.IK,
-				RotY = Packet.RotY,
-			    WeldSteer = Packet.WeldSteer,
-			    SteerOffset = Packet.SteerOffset,
-			    Model = rawget(Models, Packet.Model)
-			}
-		    end
-		    UpdateStepped(Packet)
-		end
-	end
 	
     local RealModel = GetLocalVehiclePacket().Model
     SFR = tonumber(Importer.Main.FRSize.Text)
@@ -314,7 +295,26 @@ local function ImportCar()
     local CustomCam = true
     local Speed
     local RevTurbine
-    Models[RealModel] = Model
+    
+    if Model:FindFirstChild("Interior1") and RealModel.Model:FindFirstChild("Interior") then
+		local Models = {}
+		
+		local AlexChassis = require(ReplicatedStorage.Module.AlexChassis)
+		local UpdateStepped = AlexChassis.UpdateStepped
+		AlexChassis.UpdateStepped = function(Packet)
+		    if rawget(Models, Packet.Model) then
+			Packet = {
+			    IK = Packet.IK,
+				RotY = Packet.RotY,
+			    WeldSteer = Packet.WeldSteer,
+			    SteerOffset = Packet.SteerOffset,
+			    Model = rawget(Models, Packet.Model)
+			}
+		    end
+		    UpdateStepped(Packet)
+		end
+		Models[RealModel] = Model
+	end
     Notification({Text = "Car Imported: "..Model.Name,Duration = 3}) 
     RealModel.Model.Windows.Size = Vector3.new(0.01,0.01,0.01)
     RealModel.Model.Windows.Position = RealModel.Seat.Position
@@ -389,14 +389,19 @@ local function ImportCar()
     local OGRR = RealModel.Preset.WheelBackRight.Wheel.Size + Vector3.new(TRR,SRR,SRR)
     local OGRR2 = RealModel.Preset.WheelBackRight.Rim.Size + Vector3.new(TRR*0.99,SRR*0.75,SRR*0.75)
 
-    RealModel.Model.plate.Position = Model.plate.Position
-    RealModel.Model.plate.Orientation = Model.plate.Orientation
+	if RealModel.Model:FindFirstChild("Plate") and Model:FindFirstChild("Plate") then
+	    RealModel.Model.Plate.Position = Model.Plate.Position
+    	RealModel.Model.plate.Orientation = Model.Plate.Orientation
+	end
+
     Workspace.CurrentCamera.CameraSubject = RealModel.Model.Body
+    local Spoiler1Pos
+	local Spoiler2Pos
+	local SteerPos = CFrame.new()
+	local SteerPos2 = CFrame.new()
     if Model:FindFirstChild("Interior1") and RealModel.Model:FindFirstChild("Interior") then
-	    local Spoiler1Pos
-	    local Spoiler2Pos
-	    local SteerPos = Model.Engine.CFrame:ToObjectSpace(Model.Steer.CFrame)
-	    local SteerPos2 = Model.Engine.CFrame:ToObjectSpace(Model.SteeringWheel.PrimaryPart.CFrame)
+	    SteerPos = Model.Engine.CFrame:ToObjectSpace(Model.Steer.CFrame)
+	    SteerPos2 = Model.Engine.CFrame:ToObjectSpace(Model.SteeringWheel.PrimaryPart.CFrame)
     end
 
     if ActiveSpoiler == true then
