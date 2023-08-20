@@ -194,21 +194,23 @@ Importer.Main.Rims.MouseButton1Click:Connect(function()
     end
 end)
 
-local Models = {}
-
-local AlexChassis = require(ReplicatedStorage.Module.AlexChassis)
-local UpdateStepped = AlexChassis.UpdateStepped
-AlexChassis.UpdateStepped = function(Packet)
-    if rawget(Models, Packet.Model) then
-        Packet = {
-            IK = Packet.IK,
-           	RotY = Packet.RotY,
-            WeldSteer = Packet.WeldSteer,
-            SteerOffset = Packet.SteerOffset,
-            Model = rawget(Models, Packet.Model)
-        }
+if Model:FindFirstChild("Interior1") and RealModel.Model:FindFirstChild("Interior") then
+    local Models = {}
+    
+    local AlexChassis = require(ReplicatedStorage.Module.AlexChassis)
+    local UpdateStepped = AlexChassis.UpdateStepped
+    AlexChassis.UpdateStepped = function(Packet)
+        if rawget(Models, Packet.Model) then
+            Packet = {
+                IK = Packet.IK,
+               	RotY = Packet.RotY,
+                WeldSteer = Packet.WeldSteer,
+                SteerOffset = Packet.SteerOffset,
+                Model = rawget(Models, Packet.Model)
+            }
+        end
+        UpdateStepped(Packet)
     end
-    UpdateStepped(Packet)
 end
 
 local function toVector3(String, Separator)
@@ -258,10 +260,6 @@ local function ImportCar()
 
     RealModel = NameAssigned.Value
 
-    local ActualCar = {RealModel,Model}
-
-    table.insert(CurrentCars,ActualCar)
-
     SFR = tonumber(Importer.Main.FRSize.Text)
     SFL = tonumber(Importer.Main.FLSize.Text)
     SRL = tonumber(Importer.Main.RLSize.Text)
@@ -273,7 +271,9 @@ local function ImportCar()
     local CustomCam = true
     local Speed
     local RevTurbine
-    Models[RealModel] = Model
+    if Model:FindFirstChild("Interior1") and RealModel.Model:FindFirstChild("Interior") then
+        Models[RealModel] = Model
+    end
     Notification({Text = "Car Imported: "..Model.Name,Duration = 3}) 
     RealModel.Model.Windows.Size = Vector3.new(0.01,0.01,0.01)
     RealModel.Model.Windows.Position = RealModel.Seat.Position
