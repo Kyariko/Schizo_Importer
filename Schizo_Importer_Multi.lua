@@ -322,6 +322,10 @@ end
         RealModel.InsideCamera.Position = Model.InsideCamera.Position
         RealModel.Seat.Position = Model.Seat.Position - Vector3.new(0,1,0)
         RealModel.Passenger.Position = Model.Passenger.Position - Vector3.new(0,1,0)
+        RealModel.Model.plate.Position = Model.plate.Position
+        RealModel.Model.plate.Orientation = Model.plate.Orientation
+        local SteerPos = Model.Engine.CFrame:ToObjectSpace(Model.Steer.CFrame)
+        local SteerPos2 = Model.Engine.CFrame:ToObjectSpace(Model.SteeringWheel.PrimaryPart.CFrame)
     end
 
     if Model:FindFirstChild("BrakeLights") then
@@ -338,12 +342,6 @@ end
     local OGRL2 = RealModel.Preset.WheelBackLeft.Rim.Size + Vector3.new(TRL*0.99,SRL*0.75,SRL*0.75)
     local OGRR = RealModel.Preset.WheelBackRight.Wheel.Size + Vector3.new(TRR,SRR,SRR)
     local OGRR2 = RealModel.Preset.WheelBackRight.Rim.Size + Vector3.new(TRR*0.99,SRR*0.75,SRR*0.75)
-
-    RealModel.Model.plate.Position = Model.plate.Position
-    RealModel.Model.plate.Orientation = Model.plate.Orientation
-
-    local SteerPos = Model.Engine.CFrame:ToObjectSpace(Model.Steer.CFrame)
-    local SteerPos2 = Model.Engine.CFrame:ToObjectSpace(Model.SteeringWheel.PrimaryPart.CFrame)
 
     local LocalPlayer = game:GetService("Players").LocalPlayer
     local humanoidRootPart = LocalPlayer.Character:WaitForChild("Humanoid")
