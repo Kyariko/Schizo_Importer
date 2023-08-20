@@ -162,4 +162,6 @@ https://github.com/Kyariko/Schizo_Importer/assets/96693526/838cc54f-8590-4d8d-b3
 
 When it's done, you can create a weld constraint in the part you ajusted and in properties of the weld constraint, click on "Part0" and select the part you ajusted, click on "Part1" and select this time the steering Wheel (the mesh not the model), when you're done, rename the ajusted part to ```PrimaryPart```, and make it the PrimaryPart of the Steering wheel model in the Properties of it.
 
+https://github.com/Kyariko/Schizo_Importer/assets/96693526/a81c29f8-2071-4b7e-8511-be9ed04fb6c0
 
+6. After that, you need wheels, so you will now create in the car model a new model called ```Wheels```, and create a new part in it. For this part, place it at the center of the car and then move it to the front using the Z axis (blue arrow). Since you need symetric placement for both sides you need to move each part by an exact offset you can do on the other side, here i do first the front and then duplicate everything to the back and just adjust the height of the back wheels to be in the exact center, once it's done you rename the 4 part to it's respective place, for example the fron Right wheel will be called ```WheelFrontRight```, for the back left wheel it will be ```WheelBackLeft```, you can check names in the first part of the rigging tutorial.
