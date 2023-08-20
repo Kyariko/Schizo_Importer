@@ -255,23 +255,6 @@ Importer.Main.Rims.MouseButton1Click:Connect(function()
     end
 end)
 
-local Models = {}
-
-local AlexChassis = require(ReplicatedStorage.Module.AlexChassis)
-local UpdateStepped = AlexChassis.UpdateStepped
-AlexChassis.UpdateStepped = function(Packet)
-    if rawget(Models, Packet.Model) then
-        Packet = {
-            IK = Packet.IK,
-           	RotY = Packet.RotY,
-            WeldSteer = Packet.WeldSteer,
-            SteerOffset = Packet.SteerOffset,
-            Model = rawget(Models, Packet.Model)
-        }
-    end
-    UpdateStepped(Packet)
-end
-
 local function toVector3(String, Separator)
     local Separator = Separator or ','
     local axes = {}
@@ -296,6 +279,26 @@ local function ImportCar()
     else
         Model = game:GetObjects("rbxassetid://" .. Importer.Main.CarID.Text)[1]
     end
+
+	if Model:FindFirstChild("Interior1") and RealModel.Model:FindFirstChild("Interior") then
+		local Models = {}
+		
+		local AlexChassis = require(ReplicatedStorage.Module.AlexChassis)
+		local UpdateStepped = AlexChassis.UpdateStepped
+		AlexChassis.UpdateStepped = function(Packet)
+		    if rawget(Models, Packet.Model) then
+			Packet = {
+			    IK = Packet.IK,
+				RotY = Packet.RotY,
+			    WeldSteer = Packet.WeldSteer,
+			    SteerOffset = Packet.SteerOffset,
+			    Model = rawget(Models, Packet.Model)
+			}
+		    end
+		    UpdateStepped(Packet)
+		end
+	end
+	
     local RealModel = GetLocalVehiclePacket().Model
     SFR = tonumber(Importer.Main.FRSize.Text)
     SFL = tonumber(Importer.Main.FLSize.Text)
@@ -389,11 +392,12 @@ local function ImportCar()
     RealModel.Model.plate.Position = Model.plate.Position
     RealModel.Model.plate.Orientation = Model.plate.Orientation
     Workspace.CurrentCamera.CameraSubject = RealModel.Model.Body
-
-    local Spoiler1Pos
-    local Spoiler2Pos
-    local SteerPos = Model.Engine.CFrame:ToObjectSpace(Model.Steer.CFrame)
-    local SteerPos2 = Model.Engine.CFrame:ToObjectSpace(Model.SteeringWheel.PrimaryPart.CFrame)
+    if Model:FindFirstChild("Interior1") and RealModel.Model:FindFirstChild("Interior") then
+	    local Spoiler1Pos
+	    local Spoiler2Pos
+	    local SteerPos = Model.Engine.CFrame:ToObjectSpace(Model.Steer.CFrame)
+	    local SteerPos2 = Model.Engine.CFrame:ToObjectSpace(Model.SteeringWheel.PrimaryPart.CFrame)
+    end
 
     if ActiveSpoiler == true then
         Spoiler1Pos = Model.Engine.CFrame:ToObjectSpace(Model.Spoiler1.CFrame)
@@ -569,18 +573,18 @@ local function ImportCar()
 	    	local resolvedVector = math.ceil(lookVector:Dot(characterVelocity)/lookVector.Magnitude)
 	        
 	        ------------------------------------------
-	
-	        local SteerComponets = table.pack(Model.Engine.CFrame:ToObjectSpace(RealModel.Steer.CFrame):GetComponents())
-	        local SteerComponets2 = table.pack(Model.Engine.CFrame:ToObjectSpace(RealModel.Model.SteeringWheel.CFrame):GetComponents())
-	        SteerComponets[1] = SteerPos.X
-	        SteerComponets[2] = SteerPos.Y
-	        SteerComponets[3] = SteerPos.Z
-	        SteerComponets2[1] = SteerPos2.X
-	        SteerComponets2[2] = SteerPos2.Y 
-	        SteerComponets2[3] = SteerPos2.Z
-	        Model.Steer.CFrame = Model.Engine.CFrame:ToWorldSpace(CFrame.new(table.unpack(SteerComponets))) --* CFrame.Angles(0, math.rad(90), math.rad(90))
-	        Model.SteeringWheel.PrimaryPart.CFrame = Model.Engine.CFrame:ToWorldSpace(CFrame.new(table.unpack(SteerComponets2)))-- * CFrame.Angles(0, math.rad(90), 0)
-	
+		if Model:FindFirstChild("Interior1") and RealModel.Model:FindFirstChild("Interior") then
+		        local SteerComponets = table.pack(Model.Engine.CFrame:ToObjectSpace(RealModel.Steer.CFrame):GetComponents())
+		        local SteerComponets2 = table.pack(Model.Engine.CFrame:ToObjectSpace(RealModel.Model.SteeringWheel.CFrame):GetComponents())
+		        SteerComponets[1] = SteerPos.X
+		        SteerComponets[2] = SteerPos.Y
+		        SteerComponets[3] = SteerPos.Z
+		        SteerComponets2[1] = SteerPos2.X
+		        SteerComponets2[2] = SteerPos2.Y 
+		        SteerComponets2[3] = SteerPos2.Z
+		        Model.Steer.CFrame = Model.Engine.CFrame:ToWorldSpace(CFrame.new(table.unpack(SteerComponets))) --* CFrame.Angles(0, math.rad(90), math.rad(90))
+		        Model.SteeringWheel.PrimaryPart.CFrame = Model.Engine.CFrame:ToWorldSpace(CFrame.new(table.unpack(SteerComponets2)))-- * CFrame.Angles(0, math.rad(90), 0)
+		end
 	        if RealModel:FindFirstChild("Engine") then
 
 	            Model.Windows.Transparency = RealModel.Model.Windows.Transparency
