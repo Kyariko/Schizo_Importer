@@ -73,7 +73,7 @@ For each car, you need to choose a base car depending on the Second body color b
 
 ## Car ID or Name:
 
-To start, this is where you put the car ID from Roblox MarketPlace or the name of the car if you have the package in the "Models", [folder](https://github.com/Kyariko/Schizo_Importer/blob/main/README.md#skip-to-step-5-if-your-executor-dont-support-local-packages-or-dont-have-any-rbxm-car-models-or-save-files).
+To start, this is where you put the car ID from Roblox MarketPlace or [the name of the car if you have the package in the "Models", folder](https://github.com/Kyariko/Schizo_Importer/blob/main/README.md#skip-to-step-5-if-your-executor-dont-support-local-packages-or-dont-have-any-rbxm-car-models-or-save-files).
 
 ![adza](https://github.com/Kyariko/Schizo_Importer/assets/96693526/41889cda-f275-4205-be14-9c05e5cf3598)
 
