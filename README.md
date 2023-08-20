@@ -1,49 +1,65 @@
-# RJBCI
+# Schizo Importer
 
 The roblox Jailbreak car importer made by DydyWastaken with the help of Hazed_Mist.
 
-This is the first release version, so expect bugs that gonna be fixed with time, also this version is for manual users, you gonna have to configure yourself the cars and then save them before using theses.
+Why Schizo you might ask, because everything custom car you see, everyone else won't lol
+
 # How does it works ?
 
-Well, it basicaly replaces the car model you're sitting in, and then places a model you imported with an id, everything on client side since accessing server scripts with a exploit is nearly impossible.
+It replaces the model of the car you're sitting in, and put a custom on on top of it, ajust the wheels to the new model and voila, a custom car !
 
-For cutomization, it's streaming the original color of the real car, since the real car become only invisible and not deleted, same method for textures, Windows tint, material reflectance and much more.
+For Customization it picks the color of the car you're in and copies it to the new one, and for stats, only Height, speed and handling works.
 
-Stats of the car are in developement and some of them dont work yet, it modifies the real stats though modules and for now it's extremely unstable so that's why for now i won't explain how to use this part.
+I don't think stats will stay there for this version, for obvious reasons.
 
 # Requirements
 
--[Synapse X](https://x.synapse.to/) or [krnl](https://krnl.vip/) (any other executor won't work or not gonna save presets)
-
--A vip server for a secure usage (with updates you won't be able to use this in any public server)
+-[Synapse X](https://x.synapse.to/), [krnl](https://krnl.vip/) or [Fluxus](https://fluxteam.net) (Theses support local packages importing, anything else might need a model from the Roblox marketplace)
 
 -As always, a good pc
 
 # Setup
 
-1. Download the RJBCI.lua file
+1. Download one of the executors i specified above, or yours if you want to.
 
-2. Open the game and then the executor, when the executor is opened and the game loaded, press "inject" button and wait for the process to be done
+2. Open the executor and then the game, when the executor is opened and you got the key for the it and the game loaded, press "inject" button and wait for the process to be done
 
-# copy this code and paste it in your executor
+# Once the executor injected, copy this code and paste it in your executor
 
-```loadstring(game:HttpGet('https://raw.githubusercontent.com/Kyariko/RJBCI/main/RJBCI_FIXED.lua'))()```  
+```loadstring(game:HttpGet('https://raw.githubusercontent.com/Kyariko/Schizo_Importer/main/Schizo_Importer_Solo.lua'))()```  
 
-Multiple Imports version*
+To Import multiple cars version*
 
-```loadstring(game:HttpGet('https://raw.githubusercontent.com/Kyariko/RJBCI/main/RJBCI_Multi.lua'))()```
+```loadstring(game:HttpGet('https://raw.githubusercontent.com/Kyariko/Schizo_Importer/main/Schizo_Importer_Multi.lua'))()```
 #
 
-3. With the executor, open the RJBCI.lua file and then execute the script
+3. Execute the line you just pasted in the executor
 
-4. You will now have access to the Inporter and the multiples options, its ready to use now !
+## Skip to step 5 if your executor don't support local packages or dont have any rbxm car models or save files.
+
+4.Now go to the Executor Root file to place the car models and save files.:
+
+###KRNL: 
+
+Just go into File > Open Krnl Folder and then find schizo folder and then place save files to "Saves" and your rbxm car model to "Models"
+
+![Capture d'écran 2023-08-20 053012](https://github.com/Kyariko/Schizo_Importer/assets/96693526/bbd67b64-701c-4deb-aac3-7e701fe3adfd)
+
+###Synapse, Fluxus and executor that supports getsynassets():
+
+Go to the Folder where you installed your executor and find a folder name "workspace", and then place save files to "Saves" and your rbxm car model to "Models".
+
+(example with Fluxus)
+![Capture d'écran 2023-08-20 053736](https://github.com/Kyariko/Schizo_Importer/assets/96693526/10c99228-47aa-44d3-9c40-f436c80389de)
+
+5. You will now have access to the Inporter and the multiples options, it's ready to use now !
 
 # How to use
 
 First you gonna have a empty menu, here's everything you need to know:
-![0](https://user-images.githubusercontent.com/96693526/191528182-7e0806f8-db93-4154-a4b7-7b40012ffe4a.png)
+![Capture d'écran 2023-08-20 050831](https://github.com/Kyariko/Schizo_Importer/assets/96693526/ecc9f910-1fcd-4ccf-90d8-f8f15233183e)
 
-Press N to close it or open it again and press P to disable/Enable all gui
+Press U to close it or open it again and press P to disable/Enable all gui
 
 # Choosing the vehicle
 
@@ -55,59 +71,67 @@ For each car, you need to choose a base car depending on the Second body color b
 
 -The car is big nor has big wheels/rims ? use cars like fire truck, sentinel or arachnid
 
+## Car ID or Name:
+
+To start, this is where you put the car ID from Roblox MarketPlace or the name of the car if you have the package in the "Models", folder.
+
+![adza](https://github.com/Kyariko/Schizo_Importer/assets/96693526/41889cda-f275-4205-be14-9c05e5cf3598)
+
 ## Checkboxes:
 
-Here, you can tell to the importer what the car you imported have or not by checking or uncheking boxes
+Here, you can enable Extra options:
 
-![RobloxScreenShot20220921_160041905 - Copie](https://user-images.githubusercontent.com/96693526/191530161-954fa011-6693-47e4-8b66-61233576f072.png)
+![jjjjj](https://github.com/Kyariko/Schizo_Importer/assets/96693526/3d2cbef4-e276-4a4a-801a-a8c1887d2857)
+
+-the Spoiler (translated to 'Aileron') just tells if you want a body color spoiler for the custom model.
+
+-Active Spoiler, is when you want an Active Spoiler on the custom model, it requires the macaron to work.
+
+-Spoiler in 2 parts, it to be enabled with active spoiler, it's a version for spoilers that works like the mclaren senna's one.
+
+-OverDrive only works on the arachnid as a base vehicle, it uses the overdrive feature to add extra rocket fire at the back of the car and a custom overdrive sound.
+
+-Carbon is if you want the full car body to be in carbon material, it can be colored.
+
+-Sound is if you have custom sounds for your car, you have to type 5 sounds IDs to get it work.
 
 ## Offsets and sizes:
 
-Here, you can ajust each wheel, body and seat offset for the car you imported, you can also change size and thickness of each wheel
+Here, you can ajust each wheel for the car you imported, you can also change size and thickness of each wheel
 
-For offsets, you need a value like this: -x,-y,-z (move one side, move up, move foward)
+![Capture d'écran 2023-dbdfbd08-20 050831](https://github.com/Kyariko/Schizo_Importer/assets/96693526/c56be927-c5a9-41d4-a793-a6db12cc7ccc)
 
-For Sizes you need a number
+All values are offset, if you don't want to change anything just leave a 0 in the values, it can't be void.
 
-### Important: you need to add a Height value in the importer, otherwise it won't work:
+###### be carefull, as i said it adds to the original size so if i use 0.5 for example, it gonna add 0.5 studs to the original wheel size and not set it to 0.5
 
-![Capture d’écran (13)](https://user-images.githubusercontent.com/96693526/191616199-0df02c11-9520-45c7-bf4e-7ce167d03e01.png)
+## Vehicle Stats:
 
-###### be carefull it's adds to the original size so if i use 0.5, it gonna add 0.5 to the original wheel size and not set it to 0.5
+![Capture d'écran 2023-08-20zefzfezf 050831](https://github.com/Kyariko/Schizo_Importer/assets/96693526/b6e7de98-abcd-48a4-924a-c2e80cb06f7f)
 
-###### if you dont have offsets values you can type 0,0,0 instead but it gonna be weird, same for sizes and thickness (use 0)
-
-![1](https://user-images.githubusercontent.com/96693526/191531679-20b78def-bdc1-4409-bc3a-c0f525f8be86.png)
+### Important: Height, Speed('Vitesse') and handling are mandatory you need to specify a value, as for damping, Mass and traction, you can leave a void in it, it doesn't do anything yet:
 
 ## Sounds:
 
-Here you can tell to the importer if you want to add sounds or not, if yes then you need to put 5 sound IDs in this a specific order:
+![sdfsfdsf831](https://github.com/Kyariko/Schizo_Importer/assets/96693526/eb50e23a-3a91-4b1d-9136-a88dd0b115cd)
 
-#### "OFF sound" , "Idle Sound" , "Low Sound" , "Mid Sound" , "High Sound"
+Here you can specify if you want to add sounds or not, if yes then you need to put 5 sound IDs in this specific order:
+
+#### OFF sound,Idle Sound,Low Sound,Mid Sound,High Sound (No Spaces)
+
+![qsdqsd831](https://github.com/Kyariko/Schizo_Importer/assets/96693526/e52b54da-8d18-4b42-b31d-5895e2502e46)
 
 (tip: Off sound and idle can be the same ID)
 
-![2](https://user-images.githubusercontent.com/96693526/191539422-d5275651-56da-4053-84d1-c9a8480db24a.png)
-
 ## Saving and loading Presets:
 
-Here, you can save configs you made by typing the slot number you want and then pressing save, same method to load presets, you can also directly load one of the 4th presets above
+Here, you can save configs you made by typing the slot number you want and then pressing save, same method to load presets.
 
-![3](https://user-images.githubusercontent.com/96693526/191532384-4f939e51-da44-4501-9708-b3a08e007116.png)
+![ee](https://github.com/Kyariko/Schizo_Importer/assets/96693526/aecfc0ac-c8a0-4e9d-8efa-6251211d2e6f)
 
 ## Finally pressing the import button :)
 
 Now you have every offset filled and checked necessary boxes, you can click the import button, but each time you do this, you need a new car and this isn't optional, you gonna get a glitched car if you stay in a already imported car, i told you.
-
-## How to import configs:
-
-First you gonna need the txt file, here's a sample for the Lexus lfa i made [here](https://drive.google.com/u/1/uc?id=1bGVH7eRrKlZloTd0oj-79yR6_xhBLx6c&export=download)
-
-After this you gonna put this file in the "Workspace" folder in the root directory of your script executor:
-
-https://user-images.githubusercontent.com/96693526/191542821-9323e82d-5727-41bf-b0af-ba5dd02c1965.mp4
-
-And then to load it in game you can use the method i said [here](https://github.com/DydyWasTaken/RJBCI/blob/main/README.md#saving-and-loading-presets)
 
 # How to import your own car
 
