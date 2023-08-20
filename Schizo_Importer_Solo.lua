@@ -288,7 +288,11 @@ local function ImportCar()
     end
     local RimID = Importer.Main.RimID.Text
     if isfile("schizo/Models/"..Importer.Main.CarID.Text..".rbxm") then
-        Model = game:GetObjects(getsynasset("schizo/Models/"..Importer.Main.CarID.Text..".rbxm" ))[1]
+        if (KRNL_LOADED and "Krnl") then
+            Model = game:GetObjects(getcustomasset("schizo/Models/"..Importer.Main.CarID.Text..".rbxm" ))[1]
+        else
+            Model = game:GetObjects(getsynasset("schizo/Models/"..Importer.Main.CarID.Text..".rbxm" ))[1]
+        end
     else
         Model = game:GetObjects("rbxassetid://" .. Importer.Main.CarID.Text)[1]
     end
