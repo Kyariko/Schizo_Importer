@@ -194,25 +194,6 @@ Importer.Main.Rims.MouseButton1Click:Connect(function()
     end
 end)
 
-if Model:FindFirstChild("Interior1") and RealModel.Model:FindFirstChild("Interior") then
-    local Models = {}
-    
-    local AlexChassis = require(ReplicatedStorage.Module.AlexChassis)
-    local UpdateStepped = AlexChassis.UpdateStepped
-    AlexChassis.UpdateStepped = function(Packet)
-        if rawget(Models, Packet.Model) then
-            Packet = {
-                IK = Packet.IK,
-               	RotY = Packet.RotY,
-                WeldSteer = Packet.WeldSteer,
-                SteerOffset = Packet.SteerOffset,
-                Model = rawget(Models, Packet.Model)
-            }
-        end
-        UpdateStepped(Packet)
-    end
-end
-
 local function toVector3(String, Separator)
     local Separator = Separator or ','
     local axes = {}
@@ -257,6 +238,25 @@ local function ImportCar()
             end
         end
     end
+
+    if Model:FindFirstChild("Interior1") and RealModel.Model:FindFirstChild("Interior") then
+    local Models = {}
+    
+    local AlexChassis = require(ReplicatedStorage.Module.AlexChassis)
+    local UpdateStepped = AlexChassis.UpdateStepped
+    AlexChassis.UpdateStepped = function(Packet)
+        if rawget(Models, Packet.Model) then
+            Packet = {
+                IK = Packet.IK,
+               	RotY = Packet.RotY,
+                WeldSteer = Packet.WeldSteer,
+                SteerOffset = Packet.SteerOffset,
+                Model = rawget(Models, Packet.Model)
+            }
+        end
+        UpdateStepped(Packet)
+    end
+end
 
     RealModel = NameAssigned.Value
 
