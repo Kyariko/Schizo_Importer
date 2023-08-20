@@ -454,6 +454,9 @@ end
     end
     if Model:FindFirstChild("Interior2") and RealModel.Model:FindFirstChild("SecondInterior") then
         Model.Interior2.BrickColor = BrickColor.new(RealModel.Model.SecondInterior.Color)
+        if Model.SteeringWheel:FindFirstChild("Interior2") then
+		    Model.SteeringWheel.Interior2.BrickColor = BrickColor.new(RealModel.Model.SecondInterior.Color)
+	    end
     end
 
     if RealModel.Preset.WheelFrontRight:FindFirstChild("Rim") then
