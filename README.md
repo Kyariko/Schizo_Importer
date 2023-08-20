@@ -157,6 +157,8 @@ Here's how the car model looks before and after:
 #### After:
 ![Capture d'écran 2023-08-20 182740](https://github.com/Kyariko/Schizo_Importer/assets/96693526/47238ee7-c88c-48b9-9394-0ec7a4936348)
 
+## Now for each part you will make, you have to set the transparency to 1 in properties of each part you add like, Steer, seat, Engine, etc.
+
 3. So first, you need to put the steering wheel in a model called ```SteeringWheel``` the model created has to be in the car model.
 
 https://github.com/Kyariko/Schizo_Importer/assets/96693526/84aa4da5-dbbf-451b-8121-b1a46b9e93a7
@@ -173,7 +175,35 @@ https://github.com/Kyariko/Schizo_Importer/assets/96693526/a81c29f8-2071-4b7e-85
 
 6. After that, you need wheels, so you will now create in the car model a new model called ```Wheels```, and create a new part in it. For this part, place it at the center of the car and then move it to the front using the Z axis (blue arrow). Since you need symetric placement for both sides you need to move each part by an exact offset you can do on the other side, here i do first the front and then duplicate everything to the back and just adjust the height of the back wheels to be in the exact center, once it's done you rename the 4 part to it's respective place, for example the fron Right wheel will be called ```WheelFrontRight```, for the back left wheel it will be ```WheelBackLeft```, you can check names in the first part of the [rigging tutorial](https://github.com/Kyariko/Schizo_Importer/blob/main/README.md#how-to-import-your-own-car).
 
+https://github.com/Kyariko/Schizo_Importer/assets/96693526/d1d47072-7713-4f18-aad6-1360977fa7d2
 
+7. Next, you will go in the Steering Wheel model, and duplicate the primary part, place it in the car model but out of the steering wheel model, remove the weld constraint in it, and rename it Steer.
 
-7. 
+https://github.com/Kyariko/Schizo_Importer/assets/96693526/d7fdddac-2ee8-4f73-b6ce-7878ede35ca7
 
+8. Then, make a new part, and place it at the center of the engine part by copying the CFrame of it to the part, then ajust it to the driver seat Position, it should be sitting on the seat not like in the video, and it should be a small part and a thin one like i did in the video, then duplaicate that part and place it on the passenger seat this time. once it's done, Rename each part you made here to ```Seat``` for the driver, and ```Passenger``` for the passenger.
+
+https://github.com/Kyariko/Schizo_Importer/assets/96693526/c299256e-c413-4026-9974-b46176a15c8b
+
+9. Now you select all parts of the car except the Engine and the Steer part and the Primary Part of the Steering Wheel and in properties you will:
+
+- Uncheck "Anchored"
+- Uncheck "CanCollide"
+- Uncheck "CanTouch"
+- Check "Massless"
+
+- the same thing for the Engine, Steer and the Primary Part of the Steering Wheel, BUT IT HAS TO BE ANCHORED BOX CHECKED.
+
+https://github.com/Kyariko/Schizo_Importer/assets/96693526/1b8ca370-32ad-429a-b3b4-7ab670497ba7
+
+10. Then you need to add final details, so first you duplicate the Driver Seat called "Seat", and place the duplicated part to the same place but at the player head height, you will rename that part to ```InsideCamera```, once it's done, you will add a new part in the car model and rename it ```Plate``` and place it where you want the licence plate of the car to be.
+
+https://github.com/Kyariko/Schizo_Importer/assets/96693526/c130023c-e878-4aed-8894-670b8fcab6bc
+
+11. The car Rigging is done ! Now save it to a folder of your choice (the name you will use for it will be the same you gonna have to use in the car importer if you use the local Package option).
+
+https://github.com/Kyariko/Schizo_Importer/assets/96693526/7409c2b9-1677-423d-87d3-4b10f2587e07
+
+12. Now here's how i import the car i just rigged, hope you made it thought the tutorial, lemme know on Discord (dydywastaken) if you have issues or suggestions to make the tutorial easier :D
+
+https://youtu.be/c9nliMFWk2U
