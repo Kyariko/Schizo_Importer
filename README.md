@@ -125,7 +125,7 @@ Here you can specify if you want to add sounds or not, if yes then you need to p
 
 ## Custom Rim import:
 
-if you also have a custom Rim package from marketplace or from the "Models" file in you executor root file, you can check the box and specify the marketplace ID or the name of the loca package.
+if you also have a custom Rim package from marketplace or from the "Models" file in your executor root file, you can check the box and specify the marketplace ID or the name of the loca package.
 
 ![rim](https://github.com/Kyariko/Schizo_Importer/assets/96693526/05127d01-a20d-4574-b1f4-703c6aafbce6)
 
