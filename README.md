@@ -141,4 +141,25 @@ Once you're done, you can finally press the import button, but keep in mind, you
 
 # How to import your own car
 
-# Being reworked for now
+1. So to start you need at least a car model, i will use the Corvette C6 i made for this tutorial
+
+![Capture d'écran 2023-08-20 171721](https://github.com/Kyariko/Schizo_Importer/assets/96693526/d468f738-fac6-4042-9314-d24f02bdbd3b)
+
+2. At the end of the tutorial, the Model Structure will look like this, check this color reference to see what's optional or not.
+
+![Capture d'écran 2023-08-20 182408](https://github.com/Kyariko/Schizo_Importer/assets/96693526/c943f9d3-18c4-43c4-836d-3138eaa26172)
+![Capture d'écran 2023-08-20 200227](https://github.com/Kyariko/Schizo_Importer/assets/96693526/242f87e1-53da-45c1-85ab-f5241a11ab7b)
+
+3. So first, you need to put the steering wheel in a model called ```SteeringWheel``` the model created has to be in the car model.
+
+https://github.com/Kyariko/Schizo_Importer/assets/96693526/84aa4da5-dbbf-451b-8121-b1a46b9e93a7
+
+4. Then, create a new part inside the car model, copy and paste the car body CFrame to the new part CFrame in "Properties", and ajust the lenght and the width of the part to the car's one, don't touch the height, just adjust it by moving the part up or down, it should be near the bottom of the car. Once you're done, rename the new part to ```Engine```, and make it the Primary part of the car Model in the car model Properties.
+
+https://github.com/Kyariko/Schizo_Importer/assets/96693526/838cc54f-8590-4d8d-b325-094660ff1ac7
+
+5. Now go back to the Steering wheel model, and create a new part in it, copy and paste the car Steering wheel CFrame to the part you created, the new part has to face the front of the car, you can check it by right-clicking the part in the explorer, and selecting "Surface Orientation Indicator" as i do in the video. Once it faces the correct direction, you can ajust the tilt of the part to the angle of the steering wheel and then make the size of it about the same as the steering wheel in the car, make sure it a little wider than the original steering wheel for hands placement.
+
+When it's done, you can create a weld constraint in the part you ajusted and in properties of the weld constraint, click on "Part0" and select the part you ajusted, click on "Part1" and select this time the steering Wheel (the mesh not the model), when you're done, rename the ajusted part to ```PrimaryPart```, and make it the PrimaryPart of the Steering wheel model in the Properties of it.
+
+
