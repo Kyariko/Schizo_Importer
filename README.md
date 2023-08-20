@@ -45,7 +45,7 @@ Just go into File > Open Krnl Folder and then find schizo folder and then place 
 
 ![Capture d'écran 2023-08-20 053012](https://github.com/Kyariko/Schizo_Importer/assets/96693526/bbd67b64-701c-4deb-aac3-7e701fe3adfd)
 
-###Synapse, Fluxus and executor that supports getsynassets():
+### Synapse, Fluxus and executor that supports getsynassets():
 
 Go to the Folder where you installed your executor and find a folder name "workspace", and then place save files to "Saves" and your rbxm car model to "Models".
 
