@@ -145,10 +145,17 @@ Once you're done, you can finally press the import button, but keep in mind, you
 
 ![Capture d'écran 2023-08-20 171721](https://github.com/Kyariko/Schizo_Importer/assets/96693526/d468f738-fac6-4042-9314-d24f02bdbd3b)
 
-2. At the end of the tutorial, the Model Structure will look like this, check this color reference to see what's optional or not.
+2. At the end of the tutorial, the Model Structure will look like this, check this color reference to see what's optional or not., so first thing you need to do is renaming all the car model part to this.
 
 ![Capture d'écran 2023-08-20 182408](https://github.com/Kyariko/Schizo_Importer/assets/96693526/c943f9d3-18c4-43c4-836d-3138eaa26172)
 ![Capture d'écran 2023-08-20 200227](https://github.com/Kyariko/Schizo_Importer/assets/96693526/242f87e1-53da-45c1-85ab-f5241a11ab7b)
+
+Here's how the car model looks before and after:
+
+#### Before:
+![Capture d'écran 2023-08-20 171739](https://github.com/Kyariko/Schizo_Importer/assets/96693526/a0781b00-5a6c-4bef-9e86-2d4e8f34cdab)
+#### After:
+![Capture d'écran 2023-08-20 182740](https://github.com/Kyariko/Schizo_Importer/assets/96693526/47238ee7-c88c-48b9-9394-0ec7a4936348)
 
 3. So first, you need to put the steering wheel in a model called ```SteeringWheel``` the model created has to be in the car model.
 
@@ -164,4 +171,9 @@ When it's done, you can create a weld constraint in the part you ajusted and in 
 
 https://github.com/Kyariko/Schizo_Importer/assets/96693526/a81c29f8-2071-4b7e-8511-be9ed04fb6c0
 
-6. After that, you need wheels, so you will now create in the car model a new model called ```Wheels```, and create a new part in it. For this part, place it at the center of the car and then move it to the front using the Z axis (blue arrow). Since you need symetric placement for both sides you need to move each part by an exact offset you can do on the other side, here i do first the front and then duplicate everything to the back and just adjust the height of the back wheels to be in the exact center, once it's done you rename the 4 part to it's respective place, for example the fron Right wheel will be called ```WheelFrontRight```, for the back left wheel it will be ```WheelBackLeft```, you can check names in the first part of the rigging tutorial.
+6. After that, you need wheels, so you will now create in the car model a new model called ```Wheels```, and create a new part in it. For this part, place it at the center of the car and then move it to the front using the Z axis (blue arrow). Since you need symetric placement for both sides you need to move each part by an exact offset you can do on the other side, here i do first the front and then duplicate everything to the back and just adjust the height of the back wheels to be in the exact center, once it's done you rename the 4 part to it's respective place, for example the fron Right wheel will be called ```WheelFrontRight```, for the back left wheel it will be ```WheelBackLeft```, you can check names in the first part of the [rigging tutorial](https://github.com/Kyariko/Schizo_Importer/blob/main/README.md#how-to-import-your-own-car).
+
+
+
+7. 
+
