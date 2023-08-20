@@ -39,7 +39,7 @@ To Import multiple cars version*
 
 4.Now go to the Executor Root file to place the car models and save files.:
 
-###KRNL: 
+### KRNL: 
 
 Just go into File > Open Krnl Folder and then find schizo folder and then place save files to "Saves" and your rbxm car model to "Models"
 
