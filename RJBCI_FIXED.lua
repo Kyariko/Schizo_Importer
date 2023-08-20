@@ -408,6 +408,31 @@ local function ImportCar()
     game:GetService("UserInputService").InputBegan:Connect(function(input)
         if input.KeyCode == Enum.KeyCode.P then
             Bool = not Bool
+            local ControlsEnabled = game.Players.LocalPlayer.PlayerGui.AppUI:FindFirstChild("Controls")
+            local SpeedometerEnabled = game.Players.LocalPlayer.PlayerGui.AppUI:FindFirstChild("Speedometer")
+            game.Players.LocalPlayer.PlayerGui.LevelGui2.Enabled = Bool
+            game.Players.LocalPlayer.PlayerGui.AppUI.Buttons.Visible = Bool
+            if SpeedometerEnabled ~= nil then
+                game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.Visible = true
+                game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.Top.Plate.Visible = Bool
+                game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.Top.Lock.Visible = Bool  
+                game.Players.LocalPlayer.PlayerGui.HotbarGui.Enabled = false
+                game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.UIStroke.Color = Color3.new(255,255,255)
+                game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.Bottom.Line0.BackgroundColor3 = Color3.new(255,255,255)
+                game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.Bottom.Line1.BackgroundColor3 = Color3.new(255,255,255)
+                game:GetService("Players").LocalPlayer.PlayerGui.AppUI.Speedometer.Bottom.NitroBar.Inner.Value.UIGradient.Color = ColorSequence.new{
+                    ColorSequenceKeypoint.new(0, Color3.new(0,0.6,1)),
+                    ColorSequenceKeypoint.new(1, Color3.new(0, 0.7, 1))
+                }
+                Speed = game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.Top.Speed.Text
+            else
+                game.Players.LocalPlayer.PlayerGui.HotbarGui.Enabled = Bool
+            end
+            if ControlsEnabled ~= nil then
+                game.Players.LocalPlayer.PlayerGui.AppUI.Controls.Visible = Bool   
+            end
+            game.Players.LocalPlayer.PlayerGui.WorldMarkersGui.Enabled = Bool
+            game.CoreGui.ThemeProvider.Enabled = Bool
         end
     end)
 
@@ -433,8 +458,6 @@ local function ImportCar()
             Weld.Part1 = Model.PrimaryPart
         end
     end
-
-
 
     if Sound == true then
         local Table = Importer.Main.SoundID.Text
@@ -471,8 +494,60 @@ local function ImportCar()
         end
     end
 
-    local connection
+    function AssignRim(ImportedRim,OriginalRim,WheelModel)
+        if RealModel.Preset[tostring(WheelModel)]:FindFirstChild(ImportedRim) == nil then
+            local RimClonedFunction
+            if isfile("schizo/Models/"..ImportedRim..".rbxm") then
+                RimClonedFunction = game:GetObjects(getsynasset("schizo/Models/"..ImportedRim..".rbxm" ))[1]
+            else
+                RimClonedFunction = game:GetObjects("rbxassetid://" .. ImportedRim)[1]
+            end
+            RimClonedFunction.Parent = WheelModel
+        end
+        WheelModel[ImportedRim].PrimaryPart.CFrame = OriginalRim.CFrame
+        WheelModel[ImportedRim].PrimaryPart.Size = OriginalRim.Size
+        WheelModel[ImportedRim].PrimaryPart.BrickColor = OriginalRim.BrickColor
+        OriginalRim.Transparency = 1
+    end
 
+    if Model:FindFirstChild("Interior1") and RealModel.Model:FindFirstChild("Interior") then
+        RealModel.Model.Interior:GetPropertyChangedSignal("Color"):Connect(function()
+            Model.Interior1.BrickColor  = BrickColor.new(RealModel.Model.Interior.Color)
+        end)
+    end
+    if Model:FindFirstChild("Interior2") and RealModel.Model:FindFirstChild("SecondInterior") then
+        RealModel.Model.SecondInterior:GetPropertyChangedSignal("Color"):Connect(function()
+            Model.Interior2.BrickColor = BrickColor.new(RealModel.Model.SecondInterior.Color)
+        end)
+    end
+
+    RealModel.Model.Body:GetPropertyChangedSignal("Color"):Connect(function()
+        Model.Body1.BrickColor, Model.Body1.Reflectance, Model.Body1.Material, Model.Body1.TextureID = BrickColor.new(RealModel.Model.Body.Color), RealModel.Model.Body.Reflectance, RealModel.Model.Body.Material, RealModel.Model.Body.TextureID
+        if Carbon then
+            Model.Body1.Material = Enum.Material.Plastic
+            Model.Body1.MaterialVariant = "CarbonFiber"
+        end
+    end)
+
+    if Model:FindFirstChild("Body2") and RealModel.Model:FindFirstChild("SecondBody") then
+        RealModel.Model.SecondBody:GetPropertyChangedSignal("Color"):Connect(function()
+            Model.Body2.BrickColor, Model.Body2.Reflectance, Model.Body2.Material, Model.Body2.TextureID = BrickColor.new(RealModel.Model.SecondBody.Color), RealModel.Model.SecondBody.Reflectance, RealModel.Model.SecondBody.Material, RealModel.Model.SecondBody.TextureID
+            if Carbon then
+                Model.Body2.Material = Enum.Material.Plastic
+                game.MaterialService["CarbonFiber"].StudsPerTile = 0.5
+                Model.Body2.MaterialVariant = "CarbonFiber"
+            end
+        end)
+    end
+    RealModel.Model.Headlights:GetPropertyChangedSignal("Material"):Connect(function()
+        Model.HeadLights.Material = RealModel.Model.Headlights.Material
+    end)
+
+    RealModel.Model.Headlights:GetPropertyChangedSignal("BrickColor"):Connect(function()
+        Model.HeadLights.BrickColor = BrickColor.new(RealModel.Model.Headlights.Color)
+    end)
+
+    local connection
     connection = game:GetService("RunService").RenderStepped:Connect(function()
 
         if GetLocalVehiclePacket() ~= nil then
@@ -503,41 +578,13 @@ local function ImportCar()
 	        Model.SteeringWheel.PrimaryPart.CFrame = Model.Engine.CFrame:ToWorldSpace(CFrame.new(table.unpack(SteerComponets2)))-- * CFrame.Angles(0, math.rad(90), 0)
 	
 	        if RealModel:FindFirstChild("Engine") then
-	
-	            local ControlsEnabled = game.Players.LocalPlayer.PlayerGui.AppUI:FindFirstChild("Controls")
-	            local SpeedometerEnabled = game.Players.LocalPlayer.PlayerGui.AppUI:FindFirstChild("Speedometer")
-	            game.Players.LocalPlayer.PlayerGui.LevelGui2.Enabled = Bool
-	            game.Players.LocalPlayer.PlayerGui.AppUI.Buttons.Visible = Bool
-	            if SpeedometerEnabled ~= nil then
-	                game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.Visible = true
-	                game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.Top.Plate.Visible = Bool
-	                game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.Top.Lock.Visible = Bool  
-	                game.Players.LocalPlayer.PlayerGui.HotbarGui.Enabled = false
-	                game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.UIStroke.Color = Color3.new(255,255,255)
-	                game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.Bottom.Line0.BackgroundColor3 = Color3.new(255,255,255)
-	                game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.Bottom.Line1.BackgroundColor3 = Color3.new(255,255,255)
-	                game:GetService("Players").LocalPlayer.PlayerGui.AppUI.Speedometer.Bottom.NitroBar.Inner.Value.UIGradient.Color = ColorSequence.new{
-	                    ColorSequenceKeypoint.new(0, Color3.new(0,0.6,1)),
-	                    ColorSequenceKeypoint.new(1, Color3.new(0, 0.7, 1))
-	                }
-	                Speed = game.Players.LocalPlayer.PlayerGui.AppUI.Speedometer.Top.Speed.Text
-	            else
-	                game.Players.LocalPlayer.PlayerGui.HotbarGui.Enabled = Bool
-	            end
-	            if ControlsEnabled ~= nil then
-	                game.Players.LocalPlayer.PlayerGui.AppUI.Controls.Visible = Bool   
-	            end
-	            game.Players.LocalPlayer.PlayerGui.WorldMarkersGui.Enabled = Bool
-	            game.CoreGui.ThemeProvider.Enabled = Bool
 
 	            Model.Windows.Transparency = RealModel.Model.Windows.Transparency
 	            Model.Windows.BrickColor = BrickColor.new(RealModel.Model.Windows.Color)
 	
 	            if resolvedVector < 0 then
-	                for i,v in next, RealModel.Model.Body:GetDescendants() do
-	                    if v.Name == "Brakelight" then
-	                        v.SpotLight.Color = Color3.fromRGB(255,255,255)
-	                    end
+	                if RealModel.Model.Body:FindFirstChild("Brakelights") then
+	                    RealModel.Model.Body.Brakelights.SpotLight.Color = Color3.fromRGB(255,255,255)
 	                end
 	                if Model:FindFirstChild("BrakeLights")  then
 	                    if Model:FindFirstChild("BrakeLights2")  then
@@ -549,10 +596,8 @@ local function ImportCar()
 	                    end   
 	                end
 	            else
-	                for i,v in next, RealModel.Model.Body:GetDescendants() do
-	                    if v.Name == "Brakelight" then
-	                        v.SpotLight.Color = Color3.fromRGB(255, 0, 0)
-	                    end
+	                if RealModel.Model.Body:FindFirstChild("Brakelights") then
+	                    Model.Brakelights.SpotLight.Color = Color3.fromRGB(255, 0, 0)
 	                end
 	                if Model:FindFirstChild("BrakeLights") and RealModel.Model:FindFirstChild("Brakelights") then
 	                    Model.BrakeLights.Material = RealModel.Model.Brakelights.Material
@@ -575,23 +620,8 @@ local function ImportCar()
 	                   end
 	                end
                     
-                    if  RealModel.Preset.WheelFrontRight:FindFirstChild("Rim") then
+                    if RealModel.Preset.WheelFrontRight:FindFirstChild("Rim") then
                         if Rim then
-                            function AssignRim(ImportedRim,OriginalRim,WheelModel)
-                                if RealModel.Preset[tostring(WheelModel)]:FindFirstChild(ImportedRim) == nil then
-                                    local RimClonedFunction
-                                    if isfile("schizo/Models/"..ImportedRim..".rbxm") then
-                                        RimClonedFunction = game:GetObjects(getsynasset("schizo/Models/"..ImportedRim..".rbxm" ))[1]
-                                    else
-                                        RimClonedFunction = game:GetObjects("rbxassetid://" .. ImportedRim)[1]
-                                    end
-                                    RimClonedFunction.Parent = WheelModel
-                                end
-                                WheelModel[ImportedRim].PrimaryPart.CFrame = OriginalRim.CFrame
-                                WheelModel[ImportedRim].PrimaryPart.Size = OriginalRim.Size
-                                WheelModel[ImportedRim].PrimaryPart.BrickColor = OriginalRim.BrickColor
-                                OriginalRim.Transparency = 1
-                            end
                             AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelFrontRight.Rim,RealModel.Preset.WheelFrontRight)
                             AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelFrontLeft.Rim,RealModel.Preset.WheelFrontLeft)
                             AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelBackLeft.Rim,RealModel.Preset.WheelBackLeft)
@@ -607,29 +637,6 @@ local function ImportCar()
                         RealModel.Preset.WheelBackRight.Rim.Size = OGRR2
                     end
 
-	                Model.Body1.BrickColor, Model.Body1.Reflectance, Model.Body1.Material, Model.Body1.TextureID = BrickColor.new(RealModel.Model.Body.Color), RealModel.Model.Body.Reflectance, RealModel.Model.Body.Material, RealModel.Model.Body.TextureID
-	                if Model:FindFirstChild("Body2") and RealModel.Model:FindFirstChild("SecondBody") then
-	                    Model.Body2.BrickColor, Model.Body2.Reflectance, Model.Body2.Material, Model.Body2.TextureID = BrickColor.new(RealModel.Model.SecondBody.Color), RealModel.Model.SecondBody.Reflectance, RealModel.Model.SecondBody.Material, RealModel.Model.SecondBody.TextureID
-	                    if Carbon then
-	                        Model.Body2.Material = Enum.Material.Plastic
-	                        game.MaterialService["CarbonFiber"].StudsPerTile = 0.5
-	                        Model.Body2.MaterialVariant = "CarbonFiber"
-	                    end
-	                else
-	                    if Carbon then
-	                        Model.Body1.Material = Enum.Material.Plastic
-	                        Model.Body1.MaterialVariant = "CarbonFiber"
-	                    end
-	                end
-	                Model.HeadLights.Material = RealModel.Model.Headlights.Material
-	                Model.HeadLights.BrickColor = BrickColor.new(RealModel.Model.Headlights.Color)
-	
-	                if Model:FindFirstChild("Interior1") and RealModel.Model:FindFirstChild("Interior") then
-	                    Model.Interior1.BrickColor  = BrickColor.new(RealModel.Model.Interior.Color)
-	                end
-	                if Model:FindFirstChild("Interior2") and RealModel.Model:FindFirstChild("SecondInterior") then
-	                    Model.Interior2.BrickColor = BrickColor.new(RealModel.Model.SecondInterior.Color)
-	                end
 	                if Spoiler == true then
 	                    Model.Spoiler1.BrickColor, Model.Spoiler1.Reflectance, Model.Spoiler1.Material = BrickColor.new(RealModel.Model.Body.Color), RealModel.Model.Body.Reflectance, RealModel.Model.Body.Material
 	                    if ActiveSpoiler == true then
