@@ -637,12 +637,6 @@ local function ImportCar()
 	                end
                     
                     if RealModel.Preset.WheelFrontRight:FindFirstChild("Rim") then
-                        if Rim then
-                            AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelFrontRight.Rim,RealModel.Preset.WheelFrontRight)
-                            AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelFrontLeft.Rim,RealModel.Preset.WheelFrontLeft)
-                            AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelBackLeft.Rim,RealModel.Preset.WheelBackLeft)
-                            AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelBackRight.Rim,RealModel.Preset.WheelBackRight)
-                        end
                         RealModel.Preset.WheelFrontRight.Wheel.Size = OGFR
                         RealModel.Preset.WheelFrontRight.Rim.Size = OGFR2
                         RealModel.Preset.WheelFrontLeft.Wheel.Size = OGFL
@@ -651,6 +645,12 @@ local function ImportCar()
                         RealModel.Preset.WheelBackLeft.Rim.Size = OGRL2
                         RealModel.Preset.WheelBackRight.Wheel.Size = OGRR
                         RealModel.Preset.WheelBackRight.Rim.Size = OGRR2
+			if Rim then
+                            AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelFrontRight.Rim,RealModel.Preset.WheelFrontRight)
+                            AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelFrontLeft.Rim,RealModel.Preset.WheelFrontLeft)
+                            AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelBackLeft.Rim,RealModel.Preset.WheelBackLeft)
+                            AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelBackRight.Rim,RealModel.Preset.WheelBackRight)
+                        end
                     end
 
 	                if Spoiler == true then
