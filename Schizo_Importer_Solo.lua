@@ -515,7 +515,7 @@ local function ImportCar()
             else
                 RimClonedFunction = game:GetObjects("rbxassetid://" .. ImportedRim)[1]
             end
-            RimClonedFunction.Parent = Model
+            RimClonedFunction.Parent = RealModel.Preset[tostring(WheelModel)]
         end
         WheelModel[ImportedRim].PrimaryPart.CFrame = OriginalRim.CFrame
         WheelModel[ImportedRim].PrimaryPart.Size = OriginalRim.Size
@@ -565,119 +565,116 @@ local function ImportCar()
 
     local connection
     connection = game:GetService("RunService").RenderStepped:Connect(function()
-
-        if GetLocalVehiclePacket() ~= nil then
-		    
-            RealModel = GetLocalVehiclePacket().Model
-		    GetLocalVehiclePacket().Height = Height
-		    GetLocalVehiclePacket().TurnSpeed = Handling
-		    GetLocalVehiclePacket().GarageEngineSpeed = SpeedEngine
-	        --speed Calculator not by Dydy------------
+			
+	    RealModel = GetLocalVehiclePacket().Model
+	    GetLocalVehiclePacket().Height = Height
+	    GetLocalVehiclePacket().TurnSpeed = Handling
+	    GetLocalVehiclePacket().GarageEngineSpeed = SpeedEngine
+	--speed Calculator not by Dydy------------
 	
-	    	local LocalPlayer = game:GetService("Players").LocalPlayer
-	    	local humanoidRootPart = LocalPlayer.Character:WaitForChild("HumanoidRootPart")
-	    	local lookVector = humanoidRootPart.CFrame.LookVector
-	    	local characterVelocity = humanoidRootPart.Velocity
-	    	local resolvedVector = math.ceil(lookVector:Dot(characterVelocity)/lookVector.Magnitude)
-	        
-	        ------------------------------------------
-		if Model:FindFirstChild("Interior1") and RealModel.Model:FindFirstChild("Interior") then
-		        local SteerComponets = table.pack(Model.Engine.CFrame:ToObjectSpace(RealModel.Steer.CFrame):GetComponents())
-		        local SteerComponets2 = table.pack(Model.Engine.CFrame:ToObjectSpace(RealModel.Model.SteeringWheel.CFrame):GetComponents())
-		        SteerComponets[1] = SteerPos.X
-		        SteerComponets[2] = SteerPos.Y
-		        SteerComponets[3] = SteerPos.Z
-		        SteerComponets2[1] = SteerPos2.X
-		        SteerComponets2[2] = SteerPos2.Y 
-		        SteerComponets2[3] = SteerPos2.Z
-		        Model.Steer.CFrame = Model.Engine.CFrame:ToWorldSpace(CFrame.new(table.unpack(SteerComponets))) --* CFrame.Angles(0, math.rad(90), math.rad(90))
-		        Model.SteeringWheel.PrimaryPart.CFrame = Model.Engine.CFrame:ToWorldSpace(CFrame.new(table.unpack(SteerComponets2)))-- * CFrame.Angles(0, math.rad(90), 0)
+	local LocalPlayer = game:GetService("Players").LocalPlayer
+	local humanoidRootPart = LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+	local lookVector = humanoidRootPart.CFrame.LookVector
+	local characterVelocity = humanoidRootPart.Velocity
+	local resolvedVector = math.ceil(lookVector:Dot(characterVelocity)/lookVector.Magnitude)
+	
+	------------------------------------------
+	if Model:FindFirstChild("Interior1") and RealModel.Model:FindFirstChild("Interior") then
+		local SteerComponets = table.pack(Model.Engine.CFrame:ToObjectSpace(RealModel.Steer.CFrame):GetComponents())
+		local SteerComponets2 = table.pack(Model.Engine.CFrame:ToObjectSpace(RealModel.Model.SteeringWheel.CFrame):GetComponents())
+		SteerComponets[1] = SteerPos.X
+		SteerComponets[2] = SteerPos.Y
+		SteerComponets[3] = SteerPos.Z
+		SteerComponets2[1] = SteerPos2.X
+		SteerComponets2[2] = SteerPos2.Y 
+		SteerComponets2[3] = SteerPos2.Z
+		Model.Steer.CFrame = Model.Engine.CFrame:ToWorldSpace(CFrame.new(table.unpack(SteerComponets))) --* CFrame.Angles(0, math.rad(90), math.rad(90))
+		Model.SteeringWheel.PrimaryPart.CFrame = Model.Engine.CFrame:ToWorldSpace(CFrame.new(table.unpack(SteerComponets2)))-- * CFrame.Angles(0, math.rad(90), 0)
+	end
+	if RealModel:FindFirstChild("Engine") then
+	
+	    Model.Windows.Transparency = RealModel.Model.Windows.Transparency
+	    Model.Windows.BrickColor = BrickColor.new(RealModel.Model.Windows.Color)
+	
+	    if resolvedVector < 0 then
+		if RealModel.Model.Body:FindFirstChild("Brakelights") then
+		    RealModel.Model.Body.Brakelights.SpotLight.Color = Color3.fromRGB(255,255,255)
 		end
-	        if RealModel:FindFirstChild("Engine") then
-
-	            Model.Windows.Transparency = RealModel.Model.Windows.Transparency
-	            Model.Windows.BrickColor = BrickColor.new(RealModel.Model.Windows.Color)
+		if Model:FindFirstChild("BrakeLights")  then
+		    if Model:FindFirstChild("BrakeLights2")  then
+			Model.BrakeLights2.Material = Enum.Material.Neon
+			Model.BrakeLights.Material = Enum.Material.SmoothPlastic
+		    else
+			Model.BrakeLights.Material = Enum.Material.Neon
+			Model.BrakeLights.BrickColor = BrickColor.new(255,255,255)
+		    end   
+		end
+	    else
+		if RealModel.Model.Body:FindFirstChild("Brakelights") then
+		    Model.Brakelights.SpotLight.Color = Color3.fromRGB(255, 0, 0)
+		end
+		if Model:FindFirstChild("BrakeLights") and RealModel.Model:FindFirstChild("Brakelights") then
+		    Model.BrakeLights.Material = RealModel.Model.Brakelights.Material
+		    if Model:FindFirstChild("BrakeLights2") then
+			Model.BrakeLights2.Material = Enum.Material.SmoothPlastic
+		    else
+			Model.BrakeLights.BrickColor = BrickColor.new(41)
+		    end
+		end
 	
-	            if resolvedVector < 0 then
-	                if RealModel.Model.Body:FindFirstChild("Brakelights") then
-	                    RealModel.Model.Body.Brakelights.SpotLight.Color = Color3.fromRGB(255,255,255)
-	                end
-	                if Model:FindFirstChild("BrakeLights")  then
-	                    if Model:FindFirstChild("BrakeLights2")  then
-	                        Model.BrakeLights2.Material = Enum.Material.Neon
-	                        Model.BrakeLights.Material = Enum.Material.SmoothPlastic
-	                    else
-	                        Model.BrakeLights.Material = Enum.Material.Neon
-	                        Model.BrakeLights.BrickColor = BrickColor.new(255,255,255)
-	                    end   
-	                end
-	            else
-	                if RealModel.Model.Body:FindFirstChild("Brakelights") then
-	                    Model.Brakelights.SpotLight.Color = Color3.fromRGB(255, 0, 0)
-	                end
-	                if Model:FindFirstChild("BrakeLights") and RealModel.Model:FindFirstChild("Brakelights") then
-	                    Model.BrakeLights.Material = RealModel.Model.Brakelights.Material
-	                    if Model:FindFirstChild("BrakeLights2") then
-	                        Model.BrakeLights2.Material = Enum.Material.SmoothPlastic
-	                    else
-	                        Model.BrakeLights.BrickColor = BrickColor.new(41)
-	                    end
-	                end
+	    end
+	    if RealModel.Name ~= nil then
+		if OverDrive == true then
+		    if tonumber(Speed) >= 170 then
+			Model.Turbine.Fire.Enabled = true
+			Model.Turbine.Smoke.Enabled = true
+		   else
+		       Model.Turbine.Fire.Enabled = false
+		       Model.Turbine.Smoke.Enabled = false
+		   end
+		end
+	    
+	    if RealModel.Preset.WheelFrontRight:FindFirstChild("Rim") then
+		if Rim then
+		    AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelFrontRight.Rim,RealModel.Preset.WheelFrontRight)
+		    AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelFrontLeft.Rim,RealModel.Preset.WheelFrontLeft)
+		    AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelBackLeft.Rim,RealModel.Preset.WheelBackLeft)
+		    AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelBackRight.Rim,RealModel.Preset.WheelBackRight)
+		end
+		RealModel.Preset.WheelFrontRight.Wheel.Size = OGFR
+		RealModel.Preset.WheelFrontRight.Rim.Size = OGFR2
+		RealModel.Preset.WheelFrontLeft.Wheel.Size = OGFL
+		RealModel.Preset.WheelFrontLeft.Rim.Size = OGFL2
+		RealModel.Preset.WheelBackLeft.Wheel.Size = OGRL
+		RealModel.Preset.WheelBackLeft.Rim.Size = OGRL2
+		RealModel.Preset.WheelBackRight.Wheel.Size = OGRR
+		RealModel.Preset.WheelBackRight.Rim.Size = OGRR2
+	    end
 	
-	            end
-	            if RealModel.Name ~= nil then
-	                if OverDrive == true then
-	                    if tonumber(Speed) >= 170 then
-	                        Model.Turbine.Fire.Enabled = true
-	                        Model.Turbine.Smoke.Enabled = true
-	                   else
-	                       Model.Turbine.Fire.Enabled = false
-	                       Model.Turbine.Smoke.Enabled = false
-	                   end
-	                end
-                    
-                    if RealModel.Preset.WheelFrontRight:FindFirstChild("Rim") then
-                        if Rim then
-                            AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelFrontRight.Rim,RealModel.Preset.WheelFrontRight)
-                            AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelFrontLeft.Rim,RealModel.Preset.WheelFrontLeft)
-                            AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelBackLeft.Rim,RealModel.Preset.WheelBackLeft)
-                            AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelBackRight.Rim,RealModel.Preset.WheelBackRight)
-                        end
-                        RealModel.Preset.WheelFrontRight.Wheel.Size = OGFR
-                        RealModel.Preset.WheelFrontRight.Rim.Size = OGFR2
-                        RealModel.Preset.WheelFrontLeft.Wheel.Size = OGFL
-                        RealModel.Preset.WheelFrontLeft.Rim.Size = OGFL2
-                        RealModel.Preset.WheelBackLeft.Wheel.Size = OGRL
-                        RealModel.Preset.WheelBackLeft.Rim.Size = OGRL2
-                        RealModel.Preset.WheelBackRight.Wheel.Size = OGRR
-                        RealModel.Preset.WheelBackRight.Rim.Size = OGRR2
-                    end
-
-	                if Spoiler == true then
-	                    Model.Spoiler1.BrickColor, Model.Spoiler1.Reflectance, Model.Spoiler1.Material = BrickColor.new(RealModel.Model.Body.Color), RealModel.Model.Body.Reflectance, RealModel.Model.Body.Material
-	                    if ActiveSpoiler == true then
-	                        if Spoiler2Parts == true then
-	                            local SpoilerComponets = table.pack(Model.Engine.CFrame:ToObjectSpace(RealModel.Preset.Wing.PrimaryPart.CFrame):GetComponents())
-	                            SpoilerComponets[1] = Spoiler1Pos.X
-	                            SpoilerComponets[3] = Spoiler1Pos.Z
-	                            Model.Spoiler1.CFrame = Model.Engine.CFrame:ToWorldSpace(CFrame.new(table.unpack(SpoilerComponets))) * CFrame.Angles(0, math.rad(90), 0) * CFrame.new(0, -0.21, 0)
-	                            local SpoilerComponets2 = table.pack(Model.Engine.CFrame:ToObjectSpace(RealModel.Preset.Wing.PrimaryPart.CFrame):GetComponents())
-	                            SpoilerComponets2[1] = Spoiler2Pos.X
-	                            SpoilerComponets2[3] = Spoiler2Pos.Z            
-	                            Model.Spoiler2.CFrame = Model.Engine.CFrame:ToWorldSpace(CFrame.new(table.unpack(SpoilerComponets2))) * CFrame.Angles(0, math.rad(90), 0) * CFrame.new(0, -1.151, 0)
-	                        else
-	                            local SpoilerComponets = table.pack(Model.Engine.CFrame:ToObjectSpace(RealModel.Preset.Wing.PrimaryPart.CFrame):GetComponents())
-	                            SpoilerComponets[1] = Spoiler1Pos.X
-	                            SpoilerComponets[2] = Spoiler1Pos.Y
-	                            SpoilerComponets[3] = Spoiler1Pos.Z
-	                            Model.Spoiler1.CFrame = Model.Engine.CFrame:ToWorldSpace(CFrame.new(table.unpack(SpoilerComponets))) * CFrame.Angles(0, math.rad(90), 0)
-	                        end
-	                    end
-	                end
-	                Model:SetPrimaryPartCFrame(RealModel.PrimaryPart.CFrame)
-	            end
-	        end
-        end
+		if Spoiler == true then
+		    Model.Spoiler1.BrickColor, Model.Spoiler1.Reflectance, Model.Spoiler1.Material = BrickColor.new(RealModel.Model.Body.Color), RealModel.Model.Body.Reflectance, RealModel.Model.Body.Material
+		    if ActiveSpoiler == true then
+			if Spoiler2Parts == true then
+			    local SpoilerComponets = table.pack(Model.Engine.CFrame:ToObjectSpace(RealModel.Preset.Wing.PrimaryPart.CFrame):GetComponents())
+			    SpoilerComponets[1] = Spoiler1Pos.X
+			    SpoilerComponets[3] = Spoiler1Pos.Z
+			    Model.Spoiler1.CFrame = Model.Engine.CFrame:ToWorldSpace(CFrame.new(table.unpack(SpoilerComponets))) * CFrame.Angles(0, math.rad(90), 0) * CFrame.new(0, -0.21, 0)
+			    local SpoilerComponets2 = table.pack(Model.Engine.CFrame:ToObjectSpace(RealModel.Preset.Wing.PrimaryPart.CFrame):GetComponents())
+			    SpoilerComponets2[1] = Spoiler2Pos.X
+			    SpoilerComponets2[3] = Spoiler2Pos.Z            
+			    Model.Spoiler2.CFrame = Model.Engine.CFrame:ToWorldSpace(CFrame.new(table.unpack(SpoilerComponets2))) * CFrame.Angles(0, math.rad(90), 0) * CFrame.new(0, -1.151, 0)
+			else
+			    local SpoilerComponets = table.pack(Model.Engine.CFrame:ToObjectSpace(RealModel.Preset.Wing.PrimaryPart.CFrame):GetComponents())
+			    SpoilerComponets[1] = Spoiler1Pos.X
+			    SpoilerComponets[2] = Spoiler1Pos.Y
+			    SpoilerComponets[3] = Spoiler1Pos.Z
+			    Model.Spoiler1.CFrame = Model.Engine.CFrame:ToWorldSpace(CFrame.new(table.unpack(SpoilerComponets))) * CFrame.Angles(0, math.rad(90), 0)
+			end
+		    end
+		end
+		Model:SetPrimaryPartCFrame(RealModel.PrimaryPart.CFrame)
+	    end
+	end
     end)
 end
 
