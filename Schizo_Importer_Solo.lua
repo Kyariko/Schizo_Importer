@@ -563,15 +563,16 @@ local function ImportCar()
         Model.HeadLights.BrickColor = BrickColor.new(RealModel.Model.Headlights.Color)
     end)
 
+	GetLocalVehiclePacket().Height = Height
+    GetLocalVehiclePacket().TurnSpeed = Handling
+    GetLocalVehiclePacket().GarageEngineSpeed = SpeedEngine
+
     local connection
     connection = game:GetService("RunService").RenderStepped:Connect(function()
 
         if GetLocalVehiclePacket() ~= nil then
 		    
             RealModel = GetLocalVehiclePacket().Model
-		    GetLocalVehiclePacket().Height = Height
-		    GetLocalVehiclePacket().TurnSpeed = Handling
-		    GetLocalVehiclePacket().GarageEngineSpeed = SpeedEngine
 	        --speed Calculator not by Dydy------------
 	
 	    	local LocalPlayer = game:GetService("Players").LocalPlayer
