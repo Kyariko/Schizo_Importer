@@ -515,7 +515,7 @@ local function ImportCar()
             else
                 RimClonedFunction = game:GetObjects("rbxassetid://" .. ImportedRim)[1]
             end
-            RimClonedFunction.Parent = WheelModel
+            RimClonedFunction.Parent = Model
         end
         WheelModel[ImportedRim].PrimaryPart.CFrame = OriginalRim.CFrame
         WheelModel[ImportedRim].PrimaryPart.Size = OriginalRim.Size
