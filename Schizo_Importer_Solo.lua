@@ -638,10 +638,10 @@ local function ImportCar()
                     
                     if RealModel.Preset.WheelFrontRight:FindFirstChild("Rim") then
                         if Rim then
-                            AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelFrontRight.Rim,RealModel.Preset.WheelFrontRight)
-                            AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelFrontLeft.Rim,RealModel.Preset.WheelFrontLeft)
-                            AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelBackLeft.Rim,RealModel.Preset.WheelBackLeft)
-                            AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelBackRight.Rim,RealModel.Preset.WheelBackRight)
+                            AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelFrontRight.Wheel,RealModel.Preset.WheelFrontRight)
+                            AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelFrontLeft.Wheel,RealModel.Preset.WheelFrontLeft)
+                            AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelBackLeft.Wheel,RealModel.Preset.WheelBackLeft)
+                            AssignRim(Importer.Main.RimID.Text,RealModel.Preset.WheelBackRight.Wheel,RealModel.Preset.WheelBackRight)
                         end
                         RealModel.Preset.WheelFrontRight.Wheel.Size = OGFR
                         RealModel.Preset.WheelFrontRight.Rim.Size = OGFR2
