@@ -380,15 +380,6 @@ local function ImportCar()
 
     RealModel.Model.plate.Decal.Transparency, RealModel.Model.plate.SurfaceGui.Enabled = 1, false
 
-    local OGFR = RealModel.Preset.WheelFrontRight.Wheel.Size + Vector3.new(TFR,SFR,SFR)
-    local OGFR2 = RealModel.Preset.WheelFrontRight.Rim.Size + Vector3.new(TFR*0.99,SFR*0.75,SFR*0.75)
-    local OGFL = RealModel.Preset.WheelFrontLeft.Wheel.Size + Vector3.new(TFL,SFL,SFL)
-    local OGFL2 = RealModel.Preset.WheelFrontLeft.Rim.Size + Vector3.new(TFL*0.99,SFL*0.75,SFL*0.75)
-    local OGRL = RealModel.Preset.WheelBackLeft.Wheel.Size + Vector3.new(TRL,SRL,SRL)
-    local OGRL2 = RealModel.Preset.WheelBackLeft.Rim.Size + Vector3.new(TRL*0.99,SRL*0.75,SRL*0.75)
-    local OGRR = RealModel.Preset.WheelBackRight.Wheel.Size + Vector3.new(TRR,SRR,SRR)
-    local OGRR2 = RealModel.Preset.WheelBackRight.Rim.Size + Vector3.new(TRR*0.99,SRR*0.75,SRR*0.75)
-
 	if RealModel.Model:FindFirstChild("Plate") and Model:FindFirstChild("Plate") then
 	    RealModel.Model.Plate.Position = Model.Plate.Position
     	RealModel.Model.plate.Orientation = Model.Plate.Orientation
@@ -567,6 +558,15 @@ local function ImportCar()
     GetLocalVehiclePacket().TurnSpeed = Handling
     GetLocalVehiclePacket().GarageEngineSpeed = SpeedEngine
 
+    local OGFR = RealModel.Preset.WheelFrontRight.Wheel.Size + Vector3.new(TFR,SFR,SFR)
+    local OGFR2 = RealModel.Preset.WheelFrontRight.Rim.Size + Vector3.new(TFR*0.99,SFR*0.75,SFR*0.75)
+    local OGFL = RealModel.Preset.WheelFrontLeft.Wheel.Size + Vector3.new(TFL,SFL,SFL)
+    local OGFL2 = RealModel.Preset.WheelFrontLeft.Rim.Size + Vector3.new(TFL*0.99,SFL*0.75,SFL*0.75)
+    local OGRL = RealModel.Preset.WheelBackLeft.Wheel.Size + Vector3.new(TRL,SRL,SRL)
+    local OGRL2 = RealModel.Preset.WheelBackLeft.Rim.Size + Vector3.new(TRL*0.99,SRL*0.75,SRL*0.75)
+    local OGRR = RealModel.Preset.WheelBackRight.Wheel.Size + Vector3.new(TRR,SRR,SRR)
+    local OGRR2 = RealModel.Preset.WheelBackRight.Rim.Size + Vector3.new(TRR*0.99,SRR*0.75,SRR*0.75)
+	
     local connection
     connection = game:GetService("RunService").RenderStepped:Connect(function()
 
@@ -636,7 +636,8 @@ local function ImportCar()
 	                       Model.Turbine.Smoke.Enabled = false
 	                   end
 	                end
-                    
+			
+						
                     if RealModel.Preset.WheelFrontRight:FindFirstChild("Rim") then
                         RealModel.Preset.WheelFrontRight.Wheel.Size = OGFR
                         RealModel.Preset.WheelFrontRight.Rim.Size = OGFR2
